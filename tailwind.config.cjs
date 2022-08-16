@@ -8,6 +8,7 @@ module.exports = {
       lg: "1024px",
       xl: "1280px",
     },
+    darkMode: "class",
     extend: {
       colors: {
         brightRed: "hsl(12, 88% 59%)",
