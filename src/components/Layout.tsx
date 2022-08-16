@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Header from "../sections/Header";
-// import Footer from "../sections/Footer";
+import Footer from "../sections/Footer";
 
 const Layout = ({ children }: any) => {
   return (
@@ -13,7 +13,7 @@ const Layout = ({ children }: any) => {
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );
