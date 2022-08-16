@@ -43,7 +43,7 @@ const LeftItem = () => {
   ];
 
   return (
-    <div className="mb-32 flex flex-col space-y-6 md:w-1/2">
+    <div className="flex flex-col mb-32 space-y-6 md:w-1/4">
       <div>
         <h3 className="flex justify-center font-semibold md:justify-start">
           Add a New Class
@@ -66,7 +66,7 @@ const LeftItem = () => {
       <div className="flex space-x-6 md:justify-start">
         <div>
           <select
-            className="rounded-lg border border-gray-300 px-4 py-2 focus:border-gray-500 focus:outline-none"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:border-gray-500 focus:outline-none"
             placeholder="Instructor"
           >
             <option value="">Starts</option>
@@ -79,7 +79,7 @@ const LeftItem = () => {
         </div>
         <div>
           <select
-            className="rounded-lg border border-gray-300 px-4 py-2 focus:border-gray-500 focus:outline-none"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:border-gray-500 focus:outline-none"
             placeholder="Instructor"
           >
             <option value="">Ends</option>
@@ -91,19 +91,19 @@ const LeftItem = () => {
           </select>
         </div>
       </div>
-      <div className="flex flex-col md:justify-start">
+      <div className="flex flex-col justify-center md:justify-start">
         {days.map((day, index) => (
           <div key={index}>
             <input
               type="checkbox"
-              className="mr-4 rounded-lg border border-gray-300 py-2 focus:border-gray-500 focus:outline-none"
+              className="py-2 mr-4 border border-gray-300 rounded-lg focus:border-gray-500 focus:outline-none"
             />
             <label>{day}</label>
           </div>
         ))}
       </div>
       <div className="flex justify-center md:justify-start">
-        <button className="rounded-lg bg-black px-5 py-2 text-white hover:bg-gray-800">
+        <button className="px-5 py-2 text-white bg-black rounded-lg hover:bg-gray-800">
           Add
         </button>
       </div>
