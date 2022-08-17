@@ -43,14 +43,12 @@ const Header = () => {
   return (
     <header className="relative container mx-auto p-6">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="font-bold text-lg">Scheduler</h1>
-        </div>
+        <h1 className="text-lg font-semibold text-gray-900">sched.</h1>
         <div>
           <div className="hidden md:flex space-x-12">
             {navigations.map((nav, index) => (
               <Link key={index} href={nav.path}>
-                <a className="font-semibold text-gray-400 hover:text-gray-500">
+                <a className="font-medium text-gray-900 hover:text-gray-500">
                   {nav.label}
                 </a>
               </Link>
