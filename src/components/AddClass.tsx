@@ -11,21 +11,32 @@ type FormValues = {
   days: string[];
 };
 
-type AddTaskProps = {
+type AddClassProps = {
   onTaskCreated: () => void;
 };
 
-const days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-
 const AddTask = () => {
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  const timeSlots = [];
+  let meridiem = "AM";
+  let hr = 1;
+  for (let i = 6; i < 21; i++) {
+    meridiem = i == 12 ? "PM" : meridiem;
+    hr = i > 12 ? i - 12 : i;
+
+    timeSlots.push(hr + ":00 " + meridiem);
+    timeSlots.push(hr + ":30 " + meridiem);
+  }
+
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 
@@ -50,6 +61,7 @@ const AddTask = () => {
       >
         Add Class
       </button>
+
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -77,6 +89,7 @@ const AddTask = () => {
             >
               &#8203;
             </span>
+
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -86,194 +99,219 @@ const AddTask = () => {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
+              {/* Form */}
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
               >
-                <div>
-                  <div className="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
-                    <ClockIcon
-                      className="w-6 h-6 text-green-600"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <div className="mt-3 sm:mt-5">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg font-medium leading-6 text-center text-gray-900"
-                    ></Dialog.Title>
+                {/* Title */}
+                <div className="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
+                  <ClockIcon
+                    className="w-6 h-6 text-green-600"
+                    aria-hidden="true"
+                  />
+                </div>
+                <div className="mt-3 sm:mt-5">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-center text-gray-900"
+                  ></Dialog.Title>
+                  {/* Inputs */}
+                  <div>
+                    {/* Class Code */}
                     <div>
-                      <div>
+                      <label
+                        htmlFor="classCode"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Class Code
+                      </label>
+                      <div className="relative mt-2 rounded-md shadow-sm">
+                        <input
+                          type="text"
+                          className={
+                            errors.classCode
+                              ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                          }
+                          {...register("classCode", {
+                            required: {
+                              value: true,
+                              message: "Class Code is required",
+                            },
+                          })}
+                        />
+                        {errors.classCode && (
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <ExclamationCircleIcon
+                              className="w-5 h-5 text-red-500"
+                              aria-hidden="true"
+                            />
+                          </div>
+                        )}
+                      </div>
+                      <p className="mt-2 text-sm text-red-600">
+                        {errors.classCode && errors.classCode.message}
+                      </p>
+                    </div>
+
+                    {/* Instructor */}
+                    <div className="mt-5">
+                      <label
+                        htmlFor="instructor"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Instructor
+                      </label>
+                      <div className="relative mt-2 rounded-md shadow-sm">
+                        <input
+                          type="text"
+                          className={
+                            errors.instructor
+                              ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                          }
+                          {...register("instructor", {
+                            required: {
+                              value: true,
+                              message: "Instructor is required",
+                            },
+                          })}
+                        />
+                        {errors.instructor && (
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <ExclamationCircleIcon
+                              className="w-5 h-5 text-red-500"
+                              aria-hidden="true"
+                            />
+                          </div>
+                        )}
+                      </div>
+                      <p className="mt-2 text-sm text-red-600">
+                        {errors.instructor && errors.instructor.message}
+                      </p>
+                    </div>
+
+                    {/* Starts and Ends */}
+                    <div className="flex flex-row justify-between mt-5 space-x-3">
+                      <div className="w-full">
                         <label
-                          htmlFor="classCode"
+                          htmlFor="starts"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Class Code
+                          Starts
                         </label>
                         <div className="relative mt-2 rounded-md shadow-sm">
-                          <input
-                            type="text"
+                          <select
                             className={
-                              errors.classCode
+                              errors.starts
                                 ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                                 : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             }
-                            {...register("classCode", {
+                            {...register("starts", {
                               required: {
                                 value: true,
-                                message: "Class Code is required",
+                                message: "Class starts is required",
                               },
                             })}
-                          />
-                          {errors.classCode && (
+                          >
+                            {timeSlots?.map((time, index) => (
+                              <option key={index}>{time}</option>
+                            ))}
+                          </select>
+                          {errors.starts && (
                             <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                               <ExclamationCircleIcon
-                                className="w-5 h-5 text-red-500"
+                                className="w-5 h-5 mr-2 text-red-500"
                                 aria-hidden="true"
                               />
                             </div>
                           )}
                         </div>
                         <p className="mt-2 text-sm text-red-600">
-                          {errors.classCode && errors.classCode.message}
+                          {errors.starts && errors.starts.message}
                         </p>
                       </div>
-
-                      <div className="mt-5">
+                      <div className="w-full">
                         <label
-                          htmlFor="instructor"
+                          htmlFor="ends"
                           className="block text-sm font-medium text-gray-700"
                         >
-                          Instructor
+                          Ends
                         </label>
                         <div className="relative mt-2 rounded-md shadow-sm">
-                          <input
-                            type="text"
+                          <select
                             className={
-                              errors.instructor
+                              errors.ends
                                 ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                                 : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             }
-                            {...register("instructor", {
+                            {...register("ends", {
                               required: {
                                 value: true,
-                                message: "Instructor is required",
+                                message: "Class ends is required",
                               },
                             })}
-                          />
-                          {errors.instructor && (
+                          >
+                            {timeSlots?.map((time, index) => (
+                              <option key={index}>{time}</option>
+                            ))}
+                          </select>
+                          {errors.ends && (
                             <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                               <ExclamationCircleIcon
-                                className="w-5 h-5 text-red-500"
+                                className="w-5 h-5 mr-2 text-red-500"
                                 aria-hidden="true"
                               />
                             </div>
                           )}
                         </div>
                         <p className="mt-2 text-sm text-red-600">
-                          {errors.instructor && errors.instructor.message}
+                          {errors.ends && errors.ends.message}
                         </p>
                       </div>
+                    </div>
 
-                      <div className="flex flex-row justify-between mt-5 space-x-3">
-                        <div className="w-full">
-                          <label
-                            htmlFor="instructor"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Starts
-                          </label>
-                          <div className="relative mt-2 rounded-md shadow-sm">
-                            <select
-                              className={
-                                errors.instructor
-                                  ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                                  : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                              }
-                              {...register("instructor", {
-                                required: {
-                                  value: true,
-                                  message: "Starts is required",
-                                },
-                              })}
-                            >
-                              <option>6:00</option>
-                            </select>
-                            {errors.instructor && (
-                              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                <ExclamationCircleIcon
-                                  className="w-5 h-5 mr-2 text-red-500"
-                                  aria-hidden="true"
-                                />
-                              </div>
-                            )}
-                          </div>
-                          <p className="mt-2 text-sm text-red-600">
-                            {errors.instructor && errors.instructor.message}
-                          </p>
-                        </div>
-                        <div className="w-full">
-                          <label
-                            htmlFor="instructor"
-                            className="block text-sm font-medium text-gray-700"
-                          >
-                            Ends
-                          </label>
-                          <div className="relative mt-2 rounded-md shadow-sm">
-                            <select
-                              className={
-                                errors.instructor
-                                  ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                                  : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                              }
-                              {...register("instructor", {
-                                required: {
-                                  value: true,
-                                  message: "Instructor is required",
-                                },
-                              })}
-                            >
-                              <option>6:00</option>
-                            </select>
-                            {errors.instructor && (
-                              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                <ExclamationCircleIcon
-                                  className="w-5 h-5 mr-2 text-red-500"
-                                  aria-hidden="true"
-                                />
-                              </div>
-                            )}
-                          </div>
-                          <p className="mt-2 text-sm text-red-600">
-                            {errors.instructor && errors.instructor.message}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col justify-between mt-5">
+                    {/* Days */}
+                    {/* className="flex flex-row justify-between  */}
+                    <div className="mt-5">
+                      <label
+                        htmlFor="instructor"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Day of Class
+                      </label>
+                      <div className="grid grid-cols-4 gap-4 mt-2">
                         {days?.map((day, index) => (
-                          <div key={index} className="relative mt-2">
+                          <div key={index}>
                             <input
                               type="checkbox"
-                              {...register("instructor", {
+                              className="border-4 border-indigo-500/100"
+                              {...register("days", {
                                 required: {
                                   value: true,
-                                  message: "Instructor is required",
+                                  message: "Day of class is required",
                                 },
                               })}
+                              value={day}
                             />
-                            <label className="ml-4 text-sm font-medium text-gray-700 ">
+                            <label
+                              htmlFor="days"
+                              className="ml-2 text-sm text-gray-700"
+                            >
                               {day}
                             </label>
                           </div>
                         ))}
                       </div>
-
-                      <div></div>
+                      <p className="flex mt-2 text-sm text-red-600 ">
+                        {errors.days && errors.days.message}
+                      </p>
                     </div>
                   </div>
                 </div>
 
+                {/* Cancel and Add Buttons */}
                 <div className="mt-5 sm:mt-5 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
@@ -301,4 +339,3 @@ const AddTask = () => {
 };
 
 export default AddTask;
-

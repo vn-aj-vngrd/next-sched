@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import AddClass from "./AddClass";
-import TimeSlot from "./TimeSlot";
+import TimeSlot from "./TimeSlots";
 
 const SchedTable = () => {
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sunday"];
-
+  
   return (
     <div className="flex flex-col h-full">
       <header className="relative flex items-center justify-between flex-none px-6 py-4">

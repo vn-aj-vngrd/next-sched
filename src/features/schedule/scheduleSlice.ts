@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { ScheduleState } from "../../types";
+
+type ScheduleType = {
+  classCode: string;
+  instructor: string;
+  starts: number;
+  ends: number;
+  days: string[];
+};
+
+type ScheduleState = {
+  schedules: ScheduleType[];
+};
 
 const initialState: ScheduleState = {
   schedules: [],
