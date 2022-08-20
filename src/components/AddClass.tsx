@@ -1,22 +1,40 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { ClockIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
-import { Fragment, useRef, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addClass } from "../features/schedule/scheduleSlice";
 
-type FormValues = {
+type Schedule = {
   classCode: string;
   instructor: string;
-  starts: string;
-  ends: string;
-  days: string[];
+  starts: number;
+  ends: number;
+  day: number;
+};
+
+type TimeSlot = {
+  value: number;
+  description: string;
 };
 
 type AddClassProps = {
-  onTaskCreated: () => void;
+  // onTaskCreated: () => void;
 };
 
-const AddTask = () => {
-  const days = [
+const AddClass = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm<Schedule>();
+
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const cancelButtonRef = useRef(null);
+  const [daySlots] = useState([
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -24,32 +42,42 @@ const AddTask = () => {
     "Friday",
     "Saturday",
     "Sunday",
-  ];
+  ]);
 
-  const timeSlots = [];
+  let timeSlots: TimeSlot[] = [];
   let meridiem = "AM";
   let hr = 1;
-  for (let i = 6; i < 21; i++) {
+  for (let i = 6, j = 6; i < 21; i++) {
     meridiem = i == 12 ? "PM" : meridiem;
     hr = i > 12 ? i - 12 : i;
-
-    timeSlots.push(hr + ":00 " + meridiem);
-    timeSlots.push(hr + ":30 " + meridiem);
+    timeSlots.push({
+      value: j++,
+      description: hr + ":00 " + meridiem,
+    });
+    timeSlots.push({
+      value: j++,
+      description: hr + ":30 " + meridiem,
+    });
   }
 
-  const [open, setOpen] = useState(false);
-  const cancelButtonRef = useRef(null);
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormValues>();
-
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  useEffect(() => {
     reset();
+  }, [reset, daySlots]);
+
+  const onSubmit: SubmitHandler<Schedule> = (data) => {
     console.log(data);
+
+    const formData = {
+      classCode: data.classCode,
+      instructor: data.instructor,
+      startingRow: (data.starts - 6) * 10 + 2,
+      timeRange: (data.ends - data.starts + 1) * 10,
+      days: data.day,
+    };
+
+    dispatch(addClass(formData));
+    setOpen(false);
+    reset();
   };
 
   return (
@@ -216,7 +244,9 @@ const AddTask = () => {
                             })}
                           >
                             {timeSlots?.map((time, index) => (
-                              <option key={index}>{time}</option>
+                              <option key={index} value={time.value}>
+                                {time.description}
+                              </option>
                             ))}
                           </select>
                           {errors.starts && (
@@ -254,7 +284,9 @@ const AddTask = () => {
                             })}
                           >
                             {timeSlots?.map((time, index) => (
-                              <option key={index}>{time}</option>
+                              <option key={index} value={time.value}>
+                                {time.description}
+                              </option>
                             ))}
                           </select>
                           {errors.ends && (
@@ -273,7 +305,6 @@ const AddTask = () => {
                     </div>
 
                     {/* Days */}
-                    {/* className="flex flex-row justify-between  */}
                     <div className="mt-5">
                       <label
                         htmlFor="instructor"
@@ -281,33 +312,34 @@ const AddTask = () => {
                       >
                         Day of Class
                       </label>
-                      <div className="grid grid-cols-4 gap-4 mt-2">
-                        {days?.map((day, index) => (
+                      <div className="flex flex-col gap-2 mt-2 md:grid-cols-4 md:grid">
+                        {daySlots?.map((daySlot, index) => (
                           <div key={index}>
                             <input
+                              key={index}
                               type="checkbox"
+                              defaultValue={index + 1}
                               className="border-4 border-indigo-500/100"
-                              {...register("days", {
+                              {...register(`day`, {
                                 required: {
                                   value: true,
-                                  message: "Day of class is required",
+                                  message: "Class days is required",
                                 },
                               })}
-                              value={day}
                             />
                             <label
-                              htmlFor="days"
+                              htmlFor={daySlot}
                               className="ml-2 text-sm text-gray-700"
                             >
-                              {day}
+                              {daySlot}
                             </label>
                           </div>
                         ))}
                       </div>
-                      <p className="flex mt-2 text-sm text-red-600 ">
-                        {errors.days && errors.days.message}
-                      </p>
                     </div>
+                    <p className="flex mt-2 text-sm text-red-600 ">
+                      {errors.day && errors.day.message}
+                    </p>
                   </div>
                 </div>
 
@@ -315,6 +347,7 @@ const AddTask = () => {
                 <div className="mt-5 sm:mt-5 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
+                    value="submit"
                     className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-600 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
                   >
                     Add
@@ -338,4 +371,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default AddClass;

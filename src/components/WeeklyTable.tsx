@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
 import AddClass from "./AddClass";
+// import SaveSchedule from "./SaveSchedule";
 import TimeSlot from "./TimeSlots";
 
 const SchedTable = () => {
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sunday"];
-  
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+  const schedules = useSelector((state: RootState) => state.schedule.schedules);
+
   return (
     <div className="flex flex-col h-full">
       <header className="relative flex items-center justify-between flex-none px-6 py-4">
         <h1 className="text-lg font-semibold text-gray-900">Sched.</h1>
         <div className="flex items-center">
-          <div className="md:ml-4 md:flex md:items-center">
+          <div className="flex items-center md:ml-4">
             <AddClass />
-            <div className="w-px h-6 ml-6 bg-gray-300" />
+            {/* <div className="w-px h-6 mx-3 bg-gray-300" />
+            <SaveSchedule /> */}
           </div>
         </div>
       </header>
@@ -79,54 +85,27 @@ const SchedTable = () => {
                   gridTemplateRows: "1.75rem repeat(288, minmax(0, 1fr)) auto",
                 }}
               >
-                <li
-                  className="relative flex mt-px sm:col-start-3"
-                  style={{ gridRow: "74 / span 12" }}
-                >
-                  <a
-                    href="#"
-                    className="absolute flex flex-col p-2 overflow-y-auto text-xs leading-5 rounded-lg group inset-1 bg-blue-50 hover:bg-blue-100"
+                {schedules?.map((schedule, index) => (
+                  <li
+                    key={index}
+                    className={`relative flex mt-px sm:col-start-1`}
+                    style={{
+                      gridRow: `${schedule.startingRow} / span ${schedule.timeRange}`,
+                    }}
                   >
-                    <p className="order-1 font-semibold text-blue-700">
-                      Breakfast
-                    </p>
-                    <p className="text-blue-500 group-hover:text-blue-700">
-                      <time dateTime="2022-01-12T06:00">6:00 AM</time>
-                    </p>
-                  </a>
-                </li>
-                <li
-                  className="relative flex mt-px sm:col-start-3"
-                  style={{ gridRow: "92 / span 30" }}
-                >
-                  <a
-                    href="#"
-                    className="absolute flex flex-col p-2 overflow-y-auto text-xs leading-5 rounded-lg group inset-1 bg-pink-50 hover:bg-pink-100"
-                  >
-                    <p className="order-1 font-semibold text-pink-700">
-                      Flight to Paris
-                    </p>
-                    <p className="text-pink-500 group-hover:text-pink-700">
-                      <time dateTime="2022-01-12T07:30">7:30 AM</time>
-                    </p>
-                  </a>
-                </li>
-                <li
-                  className="relative hidden mt-px sm:col-start-6 sm:flex"
-                  style={{ gridRow: "122 / span 24" }}
-                >
-                  <a
-                    href="#"
-                    className="absolute flex flex-col p-2 overflow-y-auto text-xs leading-5 bg-gray-100 rounded-lg group inset-1 hover:bg-gray-200"
-                  >
-                    <p className="order-1 font-semibold text-gray-700">
-                      Meeting with design team at Disney
-                    </p>
-                    <p className="text-gray-500 group-hover:text-gray-700">
-                      <time dateTime="2022-01-15T10:00">10:00 AM</time>
-                    </p>
-                  </a>
-                </li>
+                    <a
+                      href="#"
+                      className="absolute flex flex-col p-2 overflow-y-auto text-xs leading-5 rounded-lg group inset-1 bg-blue-50 hover:bg-blue-100"
+                    >
+                      <p className="order-1 font-semibold text-blue-700">
+                        {schedule.instructor}
+                      </p>
+                      <p className="text-blue-500 group-hover:text-blue-700">
+                        <time dateTime="2022-01-12T06:00">6:00 AM</time>
+                      </p>
+                    </a>
+                  </li>
+                ))}
               </ol>
             </div>
           </div>
