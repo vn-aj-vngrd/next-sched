@@ -18,10 +18,6 @@ type TimeSlot = {
   description: string;
 };
 
-type AddClassProps = {
-  // onTaskCreated: () => void;
-};
-
 const AddClass = () => {
   const {
     register,
