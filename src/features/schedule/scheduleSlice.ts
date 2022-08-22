@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 type ScheduleType = {
+  id: string;
   classCode: string;
   instructor: string;
   startingRow: number;
   timeRange: number;
-  days: number[];
+  className: string;
+  color: string;
 };
 
 type ScheduleState = {

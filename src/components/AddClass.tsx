@@ -1,16 +1,20 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { ClockIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../app/store";
 import { addClass } from "../features/schedule/scheduleSlice";
+import { SwatchesPicker } from "react-color";
+import { colors } from "../colors/colors";
 
 type Schedule = {
   classCode: string;
   instructor: string;
   starts: number;
   ends: number;
-  day: number;
+  isDay?: boolean;
+  isThemeColor?: boolean;
 };
 
 type TimeSlot = {
@@ -18,19 +22,35 @@ type TimeSlot = {
   description: string;
 };
 
-const AddClass = () => {
+type AddClassProps = {
+  isButton: boolean;
+};
+
+const AddClass = ({ isButton }: AddClassProps) => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     reset,
-    control,
+    setValue,
+    clearErrors,
+    setError,
+    watch,
     formState: { errors },
-  } = useForm<Schedule>();
+  } = useForm<Schedule>({ mode: "all" });
 
-  const dispatch = useDispatch();
+  const schedules = useSelector((state: RootState) => state.schedule.schedules);
+
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
-  const [daySlots] = useState([
+  const [swatchesPickerColor, setSwatchesPickerColor] = useState<
+    string | undefined
+  >("");
+  const [isSchedError, setIsSchedError] = useState<boolean>(false);
+  const [days, setDays] = useState<number[]>([]);
+
+  const daySlots: string[] = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -38,8 +58,7 @@ const AddClass = () => {
     "Friday",
     "Saturday",
     "Sunday",
-  ]);
-
+  ];
   let timeSlots: TimeSlot[] = [];
   let meridiem = "AM";
   let hr = 1;
@@ -57,39 +76,68 @@ const AddClass = () => {
   }
 
   useEffect(() => {
+    reset({
+      classCode: "",
+      instructor: "",
+      starts: 6,
+      ends: 6,
+      isDay: false,
+      isThemeColor: false,
+    });
+  }, [schedules, reset]);
+
+  const onReset = () => {
+    setOpen(false);
+    setSwatchesPickerColor(undefined);
+    setDays([]);
+    setIsSchedError(false);
     reset();
-  }, [reset, daySlots]);
+  };
 
   const onSubmit: SubmitHandler<Schedule> = (data) => {
-    console.log(data);
+    days.forEach((day) => {
+      const formData = {
+        id:
+          (data.starts - 6) * 10 +
+          2 +
+          (" relative flex mt-px col-start-" + day) +
+          " " +
+          (data.ends - data.starts) * 10,
+        classCode: data.classCode,
+        instructor: data.instructor,
+        startingRow: (data.starts - 6) * 10 + 2,
+        timeRange: (data.ends - data.starts) * 10,
+        className: "relative flex mt-px col-start-" + day,
+        color: swatchesPickerColor,
+      };
 
-    const formData = {
-      classCode: data.classCode,
-      instructor: data.instructor,
-      startingRow: (data.starts - 6) * 10 + 2,
-      timeRange: (data.ends - data.starts + 1) * 10,
-      days: data.day,
-    };
+      dispatch(addClass(formData));
+    });
 
-    dispatch(addClass(formData));
-    setOpen(false);
-    reset();
+    onReset();
   };
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none"
-      >
-        Add Class
-      </button>
+      {isButton ? (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none"
+        >
+          Add Class
+        </button>
+      ) : (
+        <button onClick={() => setOpen(true)} className="block px-4 py-2 text-sm">
+          {" "}
+          Add Class
+        </button>
+      )}
 
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-20 overflow-y-auto"
           initialFocus={cancelButtonRef}
           onClose={setOpen}
         >
@@ -129,12 +177,13 @@ const AddClass = () => {
                 className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
               >
                 {/* Title */}
-                <div className="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
+                <div className="flex items-center justify-center w-12 h-12 mx-auto bg-blue-100 rounded-full">
                   <ClockIcon
-                    className="w-6 h-6 text-green-600"
+                    className="w-6 h-6 text-blue-600"
                     aria-hidden="true"
                   />
                 </div>
+
                 <div className="mt-3 sm:mt-5">
                   <Dialog.Title
                     as="h3"
@@ -148,7 +197,7 @@ const AddClass = () => {
                         htmlFor="classCode"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Class Code
+                        Class Code / Course Name
                       </label>
                       <div className="relative mt-2 rounded-md shadow-sm">
                         <input
@@ -161,7 +210,7 @@ const AddClass = () => {
                           {...register("classCode", {
                             required: {
                               value: true,
-                              message: "Class Code is required",
+                              message: "Provide a class code",
                             },
                           })}
                         />
@@ -185,7 +234,7 @@ const AddClass = () => {
                         htmlFor="instructor"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Instructor
+                        Instructor / Teacher
                       </label>
                       <div className="relative mt-2 rounded-md shadow-sm">
                         <input
@@ -198,7 +247,7 @@ const AddClass = () => {
                           {...register("instructor", {
                             required: {
                               value: true,
-                              message: "Instructor is required",
+                              message: "Provide an instructor",
                             },
                           })}
                         />
@@ -237,6 +286,9 @@ const AddClass = () => {
                                 value: true,
                                 message: "Class starts is required",
                               },
+                              validate: (value) =>
+                                Number(watch("ends")) > value ||
+                                "Starts must be before ends",
                             })}
                           >
                             {timeSlots?.map((time, index) => (
@@ -277,6 +329,9 @@ const AddClass = () => {
                                 value: true,
                                 message: "Class ends is required",
                               },
+                              validate: (value) =>
+                                Number(watch("starts")) < value ||
+                                "Ends must be after starts",
                             })}
                           >
                             {timeSlots?.map((time, index) => (
@@ -303,28 +358,49 @@ const AddClass = () => {
                     {/* Days */}
                     <div className="mt-5">
                       <label
-                        htmlFor="instructor"
+                        htmlFor="day"
                         className="block text-sm font-medium text-gray-700"
                       >
                         Day of Class
                       </label>
                       <div className="flex flex-col gap-2 mt-2 md:grid-cols-4 md:grid">
+                        <input
+                          type="hidden"
+                          className="border-4 border-indigo-500/100"
+                          {...register("isDay", {
+                            required: {
+                              value: true,
+                              message: "Select day/s",
+                            },
+                          })}
+                        />
                         {daySlots?.map((daySlot, index) => (
                           <div key={index}>
                             <input
-                              key={index}
                               type="checkbox"
-                              defaultValue={index + 1}
+                              onChange={(event) => {
+                                if (event.target.checked) {
+                                  clearErrors("isDay");
+                                  setDays([...days, index + 1]);
+                                  setValue("isDay", true);
+                                  return;
+                                }
+                                setDays(
+                                  days.filter((day) => day !== index + 1)
+                                );
+
+                                if (days.length === 1) {
+                                  setError("isDay", {
+                                    type: "custom",
+                                    message: "Select day/s",
+                                  });
+                                  setValue("isDay", undefined);
+                                }
+                              }}
                               className="border-4 border-indigo-500/100"
-                              {...register(`day`, {
-                                required: {
-                                  value: true,
-                                  message: "Class days is required",
-                                },
-                              })}
                             />
                             <label
-                              htmlFor={daySlot}
+                              htmlFor={`days.${index}.value`}
                               className="ml-2 text-sm text-gray-700"
                             >
                               {daySlot}
@@ -332,10 +408,46 @@ const AddClass = () => {
                           </div>
                         ))}
                       </div>
+                      <p className="flex mt-2 text-sm text-red-600 ">
+                        {errors.isDay && errors.isDay.message}
+                      </p>
                     </div>
-                    <p className="flex mt-2 text-sm text-red-600 ">
-                      {errors.day && errors.day.message}
-                    </p>
+
+                    {/* Color */}
+                    <div className="mt-5">
+                      <label
+                        htmlFor="classCode"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Theme Color
+                      </label>
+                      <input
+                        type="hidden"
+                        {...register("isThemeColor", {
+                          required: {
+                            value: true,
+                            message: "Select theme color",
+                          },
+                        })}
+                      />
+                      <div className="flex justify-center w-full mx-auto mt-2 text-center align-center">
+                        <SwatchesPicker
+                          className="picker"
+                          color={swatchesPickerColor}
+                          colors={colors}
+                          onChange={(color) => {
+                            clearErrors("isThemeColor");
+                            setSwatchesPickerColor(color.hex);
+                            setValue("isThemeColor", true);
+                          }}
+                          width={1024}
+                          height={126}
+                        />
+                      </div>
+                      <p className="flex mt-2 text-sm text-red-600 ">
+                        {errors.isThemeColor && errors.isThemeColor.message}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -343,20 +455,23 @@ const AddClass = () => {
                 <div className="mt-5 sm:mt-5 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
-                    value="submit"
-                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-600 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-500 border border-transparent rounded-md shadow-sm hover:bg-blue-600 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
                   >
                     Add
                   </button>
-                  <a
-                    onClick={() => {
-                      reset();
-                      setOpen(false);
-                    }}
+                  <button
+                    type="button"
+                    onClick={onReset}
                     className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm"
                   >
                     Cancel
-                  </a>
+                  </button>
+
+                  {isSchedError && (
+                    <p className="inline-flex justify-center w-full px-4 py-2 mt-3 text-sm text-red-500 sm:ml-3 sm:w-auto sm:mt-0">
+                      Sorry, schedule already exists.
+                    </p>
+                  )}
                 </div>
               </form>
             </Transition.Child>

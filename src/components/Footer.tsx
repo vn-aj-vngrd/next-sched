@@ -2,9 +2,14 @@ const Footer = () => {
   return (
     <footer className="py-6 text-sm text-center text-gray-500">
       Created by:
-      <span className="mr-2 text-lg font-bold text-gray-900">
+      <a
+        href="https://vanajvanguardia.me"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mr-2 text-lg font-bold text-blue-500"
+      >
         &nbsp; Van AJ Vanguardia
-      </span>
+      </a>
     </footer>
   );
 };
