@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <Layout>
+    <>
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
@@ -20,8 +20,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         pauseOnHover
       />
       <ToastContainer />
-      <Component {...pageProps} />
-    </Layout>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 };
 
