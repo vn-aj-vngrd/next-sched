@@ -8,11 +8,11 @@ export interface Class {
 }
 
 export interface Schedule {
-  userSchedule: Class[];
+  scheduleState: Class[];
 }
 
 export interface ResponseSchedule {
-  userSchedule: {
+  scheduleState: {
     id: string;
     classes: Class[];
   };

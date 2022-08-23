@@ -1,21 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
-import { resetSchedule } from "../app/features/scheduleSlice";
-import { RootState } from "../app/store";
+import {
+  resetScheduleState,
+  selectScheduleState,
+} from "../app/features/scheduleSlice";
 import { ButtonProps } from "../types";
+import { toast } from "react-toastify";
 
-const ResetSchedule = ({ isButton }: ButtonProps) => {
+const ClearSchedule = ({ isButton }: ButtonProps) => {
   const dispatch = useDispatch();
-  const userSchedule = useSelector(
-    (state: RootState) => state.schedule.userSchedule
-  );
+  const userSchedule = useSelector(selectScheduleState);
 
   const handleClick = () => {
     if (userSchedule.length !== 0) {
-      dispatch(resetSchedule());
+      dispatch(resetScheduleState());
       localStorage.clear();
-      alert("Schedule reset successfully");
+      toast.success("Schedule is cleared successfully.", {
+        position: "bottom-right",
+      });
     } else {
-      alert("No schedule to reset");
+      toast.info("Your schedule is currently empty.", {
+        position: "bottom-right",
+      });
     }
   };
 
@@ -27,15 +32,15 @@ const ResetSchedule = ({ isButton }: ButtonProps) => {
           type="button"
           className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-gray-500 rounded-md shadow-sm hover:bg-gray-600 focus:outline-none"
         >
-          Reset Schedule
+          Clear Schedule
         </button>
       ) : (
         <button onClick={handleClick} className="block px-4 py-2 text-sm">
-          Reset Schedule
+          Clear Schedule
         </button>
       )}
     </>
   );
 };
 
-export default ResetSchedule;
+export default ClearSchedule;

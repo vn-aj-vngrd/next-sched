@@ -1,10 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import WeeklyTable from "../../components/Table";
 import { ResponseSchedule } from "../../types";
+import { server } from "../../../config";
 
-const schedule = ({ userSchedule }: ResponseSchedule) => {
+const schedule = ({ scheduleState }: ResponseSchedule) => {
   return (
-    <>{userSchedule && <WeeklyTable userSchedule={userSchedule.classes} />}</>
+    <>
+      {scheduleState && <WeeklyTable scheduleState={scheduleState.classes} />}
+    </>
   );
 };
 
@@ -14,20 +17,20 @@ export const getServerSideProps = async (
 ) => {
   const id = req.query.id;
 
-  const response = await fetch(`http://localhost:3000/api/schedule/${id}`, {
+  const response = await fetch(`${server}/api/schedule/${id}`, {
     method: "GET",
   });
 
   if (response.status !== 200) {
     return {
-      props: {},
+      notFound: true,
     };
   }
 
   const data = await response.json();
   return {
     props: {
-      userSchedule: data,
+      scheduleState: data,
     },
   };
 };

@@ -1,17 +1,28 @@
 import type { AppType } from "next/dist/shared/lib/utils";
 import Layout from "../components/Layout";
 import "../styles/globals.css";
-import { store } from "../app/store";
-import { Provider } from "react-redux";
+import { wrapper } from "../app/store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <Provider store={store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Provider>
+    <Layout>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <ToastContainer />
+      <Component {...pageProps} />
+    </Layout>
   );
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

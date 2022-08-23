@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import TimeSlots from "./TimeSlots";
 import { Schedule } from "../types";
 
-const Table = ({ userSchedule }: Schedule) => {
+const Table = ({ scheduleState }: Schedule) => {
   const [days] = useState([
     "Monday",
     "Tuesday",
@@ -27,7 +27,7 @@ const Table = ({ userSchedule }: Schedule) => {
           currentMinute) /
         1440;
     }
-  }, [userSchedule]);
+  }, [scheduleState]);
 
   return (
     <div>
@@ -36,13 +36,13 @@ const Table = ({ userSchedule }: Schedule) => {
         className="flex flex-col flex-auto overflow-auto bg-white"
       >
         <div
-          style={{ width: "165%" }}
+          style={{ width: "150%", }}
           className="flex flex-col flex-none max-w-none sm:max-w-none md:max-w-full"
         >
           {/* Days Row */}
           <div
             ref={containerNav as React.RefObject<HTMLDivElement>}
-            className="sticky top-0 z-10 flex-none pr-8 bg-white shadow ring-1 ring-black ring-opacity-5"
+            className="sticky top-0 z-20 flex-none pr-8 bg-white shadow ring-1 ring-black ring-opacity-5"
           >
             <div className="grid grid-cols-7 -mr-px text-sm leading-6 text-gray-500 border-r border-gray-100 divide-x divide-gray-100 sm:hidden">
               <div className="col-end-1 w-14" />
@@ -71,7 +71,7 @@ const Table = ({ userSchedule }: Schedule) => {
           </div>
           {/* Time Colum */}
           <div className="flex flex-auto">
-            <div className="sticky left-0 flex-none bg-white w-14 ring-1 ring-gray-100" />
+            <div className="sticky left-0 z-10 flex-none bg-white w-14 ring-1 ring-gray-100" />
             <div className="grid flex-auto grid-cols-1 grid-rows-1">
               {/* Horizontal lines */}
               <div
@@ -80,7 +80,7 @@ const Table = ({ userSchedule }: Schedule) => {
               >
                 <div
                   ref={containerOffset as React.RefObject<HTMLDivElement>}
-                  className="row-end-1 h-7"
+                  className="row-end-1 h-7 "
                 ></div>
                 <TimeSlots />
                 <div />
@@ -106,7 +106,7 @@ const Table = ({ userSchedule }: Schedule) => {
                   gridTemplateRows: "1.75rem repeat(288, minmax(0, 1fr)) auto",
                 }}
               >
-                {userSchedule?.map((sched, index) => (
+                {scheduleState?.map((sched, index) => (
                   <li
                     key={index}
                     className={sched.className}
@@ -115,7 +115,7 @@ const Table = ({ userSchedule }: Schedule) => {
                     }}
                   >
                     <div
-                      className="absolute flex flex-col justify-center p-2 overflow-y-auto text-xs leading-5 text-center rounded-lg group inset-1"
+                      className="absolute flex flex-col justify-center overflow-y-auto text-xs leading-5 text-center rounded-lg group inset-1"
                       style={{
                         backgroundColor: `${sched.color}`,
                       }}

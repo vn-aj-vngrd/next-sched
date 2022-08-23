@@ -13,7 +13,7 @@ export default async function handle(
       },
     });
 
-    return res.json(result);
+    return res.json(result.id);
   }
 
   throw new Error(

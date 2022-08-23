@@ -1,14 +1,11 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../app/store";
 import WeeklyTable from "../components/Table";
-import { persistClass } from "../app/features/scheduleSlice";
+import { persistScheduleState, selectScheduleState } from "../app/features/scheduleSlice";
 
 const Home: NextPage = () => {
-  const userSchedule = useSelector(
-    (state: RootState) => state.schedule.userSchedule
-  );
+  const userSchedule = useSelector(selectScheduleState);
 
   const dispatch = useDispatch();
   const [schedule, setSchedule] = useState(userSchedule);
@@ -30,14 +27,14 @@ const Home: NextPage = () => {
       const data = JSON.parse(
         localStorage.getItem("localStorageSchedule") || "[]"
       );
-      dispatch(persistClass(data));
+      dispatch(persistScheduleState(data));
     }
 
     // Update the schedule state with the new schedule
     setSchedule(userSchedule);
   }, [dispatch, userSchedule]);
 
-  return <WeeklyTable userSchedule={schedule} />;
+  return <WeeklyTable scheduleState={schedule} />;
 };
 
 export default Home;

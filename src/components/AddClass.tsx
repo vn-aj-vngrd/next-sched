@@ -3,11 +3,12 @@ import { ClockIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addClass } from "../app/features/scheduleSlice";
+import { setScheduleState } from "../app/features/scheduleSlice";
 import { SwatchesPicker } from "react-color";
 import { colors } from "../colors/colors";
 import { ButtonProps, FormClass, TimeSlot } from "../types";
 import { generateTimeSlot } from "../helpers";
+import { toast } from "react-toastify";
 
 const AddClass = ({ isButton }: ButtonProps) => {
   const dispatch = useDispatch();
@@ -73,7 +74,10 @@ const AddClass = ({ isButton }: ButtonProps) => {
         color: swatchesPickerColor,
       };
 
-      dispatch(addClass(formData));
+      dispatch(setScheduleState(formData));
+      toast.success(`A class was added successfully.`, {
+        position: "bottom-right",
+      });
     });
 
     onReset();
@@ -85,16 +89,16 @@ const AddClass = ({ isButton }: ButtonProps) => {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none"
+          className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none"
         >
-          Add Class
+          Add New Class
         </button>
       ) : (
         <button
           onClick={() => setOpen(true)}
           className="block px-4 py-2 text-sm"
         >
-          Add Class
+          Add New Class
         </button>
       )}
 
@@ -115,7 +119,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" />
+              <Dialog.Overlay className="fixed inset-0 transition-opacity bg-gray-600 bg-opacity-75" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -168,8 +172,8 @@ const AddClass = ({ isButton }: ButtonProps) => {
                           type="text"
                           className={
                             errors.classCode
-                              ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                              ? "w-full rounded-lg border border-red-600 px-4 py-2 focus:outline-none focus:ring-red-600 focus:border-red-600 sm:text-sm"
+                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
                           }
                           {...register("classCode", {
                             required: {
@@ -181,7 +185,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                         {errors.classCode && (
                           <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                             <ExclamationCircleIcon
-                              className="w-5 h-5 text-red-500"
+                              className="w-5 h-5 text-red-600"
                               aria-hidden="true"
                             />
                           </div>
@@ -205,8 +209,8 @@ const AddClass = ({ isButton }: ButtonProps) => {
                           type="text"
                           className={
                             errors.instructor
-                              ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                              ? "w-full rounded-lg border border-red-600 px-4 py-2 focus:outline-none focus:ring-red-600 focus:border-red-600 sm:text-sm"
+                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
                           }
                           {...register("instructor", {
                             required: {
@@ -218,7 +222,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                         {errors.instructor && (
                           <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                             <ExclamationCircleIcon
-                              className="w-5 h-5 text-red-500"
+                              className="w-5 h-5 text-red-600"
                               aria-hidden="true"
                             />
                           </div>
@@ -242,8 +246,8 @@ const AddClass = ({ isButton }: ButtonProps) => {
                           <select
                             className={
                               errors.starts
-                                ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                                : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                ? "w-full rounded-lg border border-red-600 px-4 py-2 focus:outline-none focus:ring-red-600 focus:border-red-600 sm:text-sm"
+                                : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
                             }
                             {...register("starts", {
                               required: {
@@ -264,7 +268,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                           {errors.starts && (
                             <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                               <ExclamationCircleIcon
-                                className="w-5 h-5 mr-2 text-red-500"
+                                className="w-5 h-5 mr-2 text-red-600"
                                 aria-hidden="true"
                               />
                             </div>
@@ -285,8 +289,8 @@ const AddClass = ({ isButton }: ButtonProps) => {
                           <select
                             className={
                               errors.ends
-                                ? "w-full rounded-lg border border-red-500 px-4 py-2 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                                : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                ? "w-full rounded-lg border border-red-600 px-4 py-2 focus:outline-none focus:ring-red-600 focus:border-red-600 sm:text-sm"
+                                : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
                             }
                             {...register("ends", {
                               required: {
@@ -307,7 +311,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                           {errors.ends && (
                             <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                               <ExclamationCircleIcon
-                                className="w-5 h-5 mr-2 text-red-500"
+                                className="w-5 h-5 mr-2 text-red-600"
                                 aria-hidden="true"
                               />
                             </div>
@@ -330,7 +334,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                       <div className="flex flex-col gap-2 mt-2 md:grid-cols-4 md:grid">
                         <input
                           type="hidden"
-                          className="border-4 border-indigo-500/100"
+                          className="border-4 border-indigo-600/100"
                           {...register("isDay", {
                             required: {
                               value: true,
@@ -361,7 +365,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                                   setValue("isDay", undefined);
                                 }
                               }}
-                              className="border-4 border-indigo-500/100"
+                              className="border-4 border-indigo-600/100"
                             />
                             <label
                               htmlFor={`days.${index}.value`}
@@ -419,20 +423,20 @@ const AddClass = ({ isButton }: ButtonProps) => {
                 <div className="mt-5 sm:mt-5 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
-                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-500 border border-transparent rounded-md shadow-sm hover:bg-blue-600 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
                   >
                     Add
                   </button>
                   <button
                     type="button"
                     onClick={onReset}
-                    className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm"
+                    className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm"
                   >
                     Cancel
                   </button>
 
                   {isSchedError && (
-                    <p className="inline-flex justify-center w-full px-4 py-2 mt-3 text-sm text-red-500 sm:ml-3 sm:w-auto sm:mt-0">
+                    <p className="inline-flex justify-center w-full px-4 py-2 mt-3 text-sm text-red-600 sm:ml-3 sm:w-auto sm:mt-0">
                       Sorry, schedule already exists.
                     </p>
                   )}

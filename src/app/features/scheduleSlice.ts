@@ -1,26 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { AppState } from "../store";
+import { HYDRATE } from "next-redux-wrapper";
 import { Schedule } from "../../types";
 
 const initialState: Schedule = {
-  userSchedule: [],
+  scheduleState: [],
 };
 
 export const scheduleSlice = createSlice({
   name: "schedule",
   initialState,
   reducers: {
-    addClass: (state, action: PayloadAction<any>) => {
-      state.userSchedule.push(action.payload);
+    setScheduleState: (state, action: PayloadAction<any>) => {
+      state.scheduleState.push(action.payload);
     },
-    persistClass: (state, action: PayloadAction<any>) => {
-      state.userSchedule = action.payload;
+    persistScheduleState: (state, action: PayloadAction<any>) => {
+      state.scheduleState = action.payload;
     },
-    resetSchedule: (state) => {
-      state.userSchedule = [];
+    resetScheduleState: (state) => {
+      state.scheduleState = [];
+    },
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      return {
+        ...state,
+        ...action.payload.auth,
+      };
     },
   },
 });
 
-export const { addClass, persistClass, resetSchedule } = scheduleSlice.actions;
+export const { setScheduleState, persistScheduleState, resetScheduleState } =
+  scheduleSlice.actions;
+export const selectScheduleState = (state: AppState) =>
+  state.schedule.scheduleState;
 export default scheduleSlice.reducer;
