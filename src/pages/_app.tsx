@@ -6,11 +6,11 @@ import { Provider } from "react-redux";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-      <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
+    <Provider store={store}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
   );
 };
 

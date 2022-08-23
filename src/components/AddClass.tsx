@@ -3,30 +3,13 @@ import { ClockIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../app/store";
-import { addClass } from "../features/schedule/scheduleSlice";
+import { addClass } from "../app/features/scheduleSlice";
 import { SwatchesPicker } from "react-color";
 import { colors } from "../colors/colors";
+import { ButtonProps, FormClass, TimeSlot } from "../types";
+import { generateTimeSlot } from "../helpers";
 
-type Schedule = {
-  classCode: string;
-  instructor: string;
-  starts: number;
-  ends: number;
-  isDay?: boolean;
-  isThemeColor?: boolean;
-};
-
-type TimeSlot = {
-  value: number;
-  description: string;
-};
-
-type AddClassProps = {
-  isButton: boolean;
-};
-
-const AddClass = ({ isButton }: AddClassProps) => {
+const AddClass = ({ isButton }: ButtonProps) => {
   const dispatch = useDispatch();
 
   const {
@@ -38,19 +21,18 @@ const AddClass = ({ isButton }: AddClassProps) => {
     setError,
     watch,
     formState: { errors },
-  } = useForm<Schedule>({ mode: "all" });
-
-  const schedules = useSelector((state: RootState) => state.schedule.schedules);
+  } = useForm<FormClass>({ mode: "all" });
 
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
+
   const [swatchesPickerColor, setSwatchesPickerColor] = useState<
     string | undefined
   >("");
   const [isSchedError, setIsSchedError] = useState<boolean>(false);
-  const [days, setDays] = useState<number[]>([]);
 
-  const daySlots: string[] = [
+  const [days, setDays] = useState<number[]>([]);
+  const [daySlots] = useState([
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -58,22 +40,8 @@ const AddClass = ({ isButton }: AddClassProps) => {
     "Friday",
     "Saturday",
     "Sunday",
-  ];
-  let timeSlots: TimeSlot[] = [];
-  let meridiem = "AM";
-  let hr = 1;
-  for (let i = 6, j = 6; i < 21; i++) {
-    meridiem = i == 12 ? "PM" : meridiem;
-    hr = i > 12 ? i - 12 : i;
-    timeSlots.push({
-      value: j++,
-      description: hr + ":00 " + meridiem,
-    });
-    timeSlots.push({
-      value: j++,
-      description: hr + ":30 " + meridiem,
-    });
-  }
+  ]);
+  const [timeSlots] = useState<TimeSlot[]>(generateTimeSlot());
 
   useEffect(() => {
     reset({
@@ -84,7 +52,7 @@ const AddClass = ({ isButton }: AddClassProps) => {
       isDay: false,
       isThemeColor: false,
     });
-  }, [schedules, reset]);
+  }, [reset]);
 
   const onReset = () => {
     setOpen(false);
@@ -94,15 +62,9 @@ const AddClass = ({ isButton }: AddClassProps) => {
     reset();
   };
 
-  const onSubmit: SubmitHandler<Schedule> = (data) => {
+  const onSubmit: SubmitHandler<FormClass> = (data) => {
     days.forEach((day) => {
       const formData = {
-        id:
-          (data.starts - 6) * 10 +
-          2 +
-          (" relative flex mt-px col-start-" + day) +
-          " " +
-          (data.ends - data.starts) * 10,
         classCode: data.classCode,
         instructor: data.instructor,
         startingRow: (data.starts - 6) * 10 + 2,
@@ -128,8 +90,10 @@ const AddClass = ({ isButton }: AddClassProps) => {
           Add Class
         </button>
       ) : (
-        <button onClick={() => setOpen(true)} className="block px-4 py-2 text-sm">
-          {" "}
+        <button
+          onClick={() => setOpen(true)}
+          className="block px-4 py-2 text-sm"
+        >
           Add Class
         </button>
       )}

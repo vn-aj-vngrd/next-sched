@@ -1,0 +1,24 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+    provider             = "mongodb"
+    url                  = env("DATABASE_URL")
+    referentialIntegrity = "prisma"
+}
+
+type Class {
+    classCode   String
+    instructor  String
+    startingRow Int
+    timeRange   Int
+    className   String
+    color       String
+}
+
+model Schedule {
+    id      String  @id @default(auto()) @map("_id") @db.ObjectId
+    classes Class[]
+}
