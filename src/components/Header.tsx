@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <>
       {path === "/" ? (
-        <header className="relative z-20 flex items-center justify-between flex-none px-6 py-4 border-b border-gray-200">
+        <header className="relative z-30 flex items-center justify-between flex-none px-6 py-4 border-b border-gray-200">
           <button
             type="button"
             className="text-xl font-bold text-gray-600"

@@ -36,7 +36,7 @@ const Table = ({ scheduleState }: Schedule) => {
         className="flex flex-col flex-auto overflow-auto bg-white"
       >
         <div
-          style={{ width: "150%", }}
+          style={{ width: "200%", }}
           className="flex flex-col flex-none max-w-none sm:max-w-none md:max-w-full"
         >
           {/* Days Row */}

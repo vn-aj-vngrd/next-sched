@@ -105,7 +105,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-20 overflow-y-auto"
+          className="fixed inset-0 z-50 overflow-y-auto"
           initialFocus={cancelButtonRef}
           onClose={setOpen}
         >
