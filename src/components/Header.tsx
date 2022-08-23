@@ -20,7 +20,8 @@ const Header = () => {
               router.push("/");
             }}
           >
-            Next<span className="text-blue-600 ">Sched</span>
+            Next<span className="text-blue-600">Sched</span>
+            <span className="text-sm font-medium ml-1 text-red-600">Beta</span>
           </button>
 
           <div className="flex items-center">
@@ -85,7 +86,8 @@ const Header = () => {
               router.push("/");
             }}
           >
-            Next<span className="text-blue-600 ">Sched</span>
+            Next<span className="text-blue-600">Sched</span>
+            <span className="text-sm font-medium ml-1 text-red-600">Beta</span>
           </button>
         </header>
       )}
