@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import FloatingButton from "./FloatingButton";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -29,7 +28,6 @@ const Layout = ({ children }: any) => {
           {children}
         </main>
         <Footer />
-        <FloatingButton />
       </div>
     </>
   );

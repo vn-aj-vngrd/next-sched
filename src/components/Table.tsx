@@ -47,13 +47,12 @@ const Table = ({ scheduleState }: Schedule) => {
             <div className="grid grid-cols-7 -mr-px text-sm leading-6 text-gray-500 border-r border-gray-100 divide-x divide-gray-100 sm:hidden">
               <div className="col-end-1 w-14" />
               {days?.map((day, index) => (
-                <button
+                <div
                   key={index}
-                  type="button"
                   className="flex flex-col items-center pt-2 pb-3"
                 >
                   {day.substring(0, 3)}
-                </button>
+                </div>
               ))}
             </div>
 
