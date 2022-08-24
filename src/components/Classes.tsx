@@ -1,9 +1,16 @@
+import { useDispatch } from "react-redux";
+import { deleteScheduleState } from "../app/features/scheduleSlice";
+import { XIcon } from "@heroicons/react/solid";
 import { Schedule } from "../types";
+import { useRouter } from "next/router";
 
 const Classes = ({ scheduleState }: Schedule) => {
+  const dispatch = useDispatch();
+  const route = useRouter().route;
+
   return (
     <ol
-      className="col-start-1 col-end-2 row-start-1 grid grid-cols-7 sm:pr-8"
+      className="grid grid-cols-7 col-start-1 col-end-2 row-start-1 sm:pr-8"
       style={{
         gridTemplateRows: "1.75rem repeat(174, minmax(0, 1fr))",
       }}
@@ -22,6 +29,19 @@ const Classes = ({ scheduleState }: Schedule) => {
               backgroundColor: `${sched.color}`,
             }}
           >
+            {route === "/" && (
+              <button
+                type="button"
+                className="absolute top-2 right-2"
+                onClick={() => {
+                  console.log(sched.id);
+                  dispatch(deleteScheduleState(sched.id));
+                }}
+              >
+                <XIcon className="h-4 text-white bg-red-500 border border-white rounded-lg" />
+              </button>
+            )}
+
             <p
               className="text-sm font-semibold text-white"
               // style={{

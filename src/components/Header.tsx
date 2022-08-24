@@ -1,18 +1,19 @@
 import AddClass from "./AddClass";
 import SaveSched from "./SaveSchedule";
-import { Fragment } from "react";
-import { DotsHorizontalIcon } from "@heroicons/react/solid";
+import { Fragment, useState } from "react";
+import { DotsHorizontalIcon, DotsVerticalIcon } from "@heroicons/react/solid";
 import { Menu, Transition } from "@headlessui/react";
 import router, { useRouter } from "next/router";
 import ClearSchedule from "./ClearSchedule";
 
 const Header = () => {
   const path = useRouter().pathname;
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
     <>
       {path === "/" ? (
-        <header className="sticky shadow-sm bg-white top-0 z-50 flex items-center justify-between flex-none px-6 py-4">
+        <header className="sticky top-0 z-40 flex items-center justify-between flex-none px-6 py-4 bg-white shadow-sm">
           <button
             type="button"
             className="text-xl font-bold text-gray-600"
@@ -21,7 +22,7 @@ const Header = () => {
             }}
           >
             Next<span className="text-blue-600">Sched</span>
-            <span className="text-sm font-medium ml-1 text-red-600">Beta</span>
+            <span className="ml-1 text-sm font-medium text-red-600">Beta</span>
           </button>
 
           <div className="flex items-center">
@@ -44,36 +45,32 @@ const Header = () => {
 
               <SaveSched isButton={true} />
             </div>
-            <Menu as="div" className="relative ml-6 md:hidden">
-              <Menu.Button className="flex items-center p-2 -mx-2 text-gray-400 border border-transparent rounded-full hover:text-gray-500">
-                <span className="sr-only">Open menu</span>
-                <DotsHorizontalIcon className="w-5 h-5" aria-hidden="true" />
-              </Menu.Button>
+          </div>
 
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 overflow-hidden origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg focus:outline-none w-36 ring-1 ring-black ring-opacity-5">
-                  <div className="py-1">
-                    <Menu.Item>
-                      <AddClass isButton={false} />
-                    </Menu.Item>
-                    <Menu.Item>
-                      <ClearSchedule isButton={false} />
-                    </Menu.Item>
-                    <Menu.Item>
-                      <SaveSched isButton={false} />
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+          <div className="relative ml-6 md:hidden">
+            <button
+              onClick={() => {
+                setShowMenu(!showMenu);
+              }}
+              className="relative z-10 block p-2 text-gray-500 border border-transparent focus:outline-none"
+            >
+              <DotsVerticalIcon className="w-5 h-5" />
+            </button>
+
+            {showMenu && (
+              <div className="absolute right-0 z-20 w-48 py-2 mt-1 bg-white rounded-md shadow-md">
+                <div className="px-4 transition-colors duration-200 transform hover:bg-gray-100 ">
+                  <AddClass isButton={false} />
+                </div>
+                <div className="px-4 transition-colors duration-200 transform hover:bg-gray-100 ">
+                  <ClearSchedule isButton={false} />
+                </div>
+                <hr className="border-gray-200 "></hr>
+                <div className="px-4 transition-colors duration-200 transform hover:bg-gray-100 ">
+                  <SaveSched isButton={false} />
+                </div>
+              </div>
+            )}
           </div>
         </header>
       ) : (
@@ -86,7 +83,7 @@ const Header = () => {
             }}
           >
             Next<span className="text-blue-600">Sched</span>
-            <span className="text-sm font-medium ml-1 text-red-600">Beta</span>
+            <span className="ml-1 text-sm font-medium text-red-600">Beta</span>
           </button>
         </header>
       )}

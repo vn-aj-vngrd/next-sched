@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { AppState } from "../store";
 import { HYDRATE } from "next-redux-wrapper";
 import { Schedule } from "../../types";
 
@@ -18,6 +17,12 @@ export const scheduleSlice = createSlice({
     persistScheduleState: (state, action: PayloadAction<any>) => {
       state.scheduleState = action.payload;
     },
+    deleteScheduleState: (state, action: PayloadAction<any>) => {
+      state.scheduleState = state.scheduleState.filter(
+        (item) => item.id !== action.payload
+      );
+
+    },
     resetScheduleState: (state) => {
       state.scheduleState = [];
     },
@@ -32,8 +37,11 @@ export const scheduleSlice = createSlice({
   },
 });
 
-export const { setScheduleState, persistScheduleState, resetScheduleState } =
-  scheduleSlice.actions;
-export const selectScheduleState = (state: AppState) =>
-  state.schedule.scheduleState;
+export const {
+  setScheduleState,
+  persistScheduleState,
+  deleteScheduleState,
+  resetScheduleState,
+} = scheduleSlice.actions;
+
 export default scheduleSlice.reducer;

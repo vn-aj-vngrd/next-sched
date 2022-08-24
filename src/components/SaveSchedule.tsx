@@ -1,18 +1,21 @@
 import { ButtonProps } from "../types";
 import { useSelector } from "react-redux";
-import { selectScheduleState } from "../app/features/scheduleSlice";
 import { server } from "../../config";
 import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import { useState } from "react";
+import { RootState } from "../app/store";
 
 const SaveSched = ({ isButton }: ButtonProps) => {
-  const schedule = useSelector(selectScheduleState);
+  const scheduleState = useSelector(
+    (state: RootState) => state.scheduleState
+  );
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleClick = async () => {
-    if (schedule.length !== 0) {
-      const formData = JSON.stringify(schedule);
+    if (scheduleState.length !== 0) {
+      const formData = JSON.stringify(scheduleState);
 
       setIsLoading(true);
       const response = await fetch(`${server}/api/schedule`, {

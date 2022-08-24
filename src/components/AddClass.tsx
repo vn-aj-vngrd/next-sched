@@ -9,6 +9,7 @@ import { colors } from "../colors/colors";
 import { ButtonProps, FormClass, TimeSlot } from "../types";
 import { generateTimeSlot } from "../helpers";
 import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 
 const AddClass = ({ isButton }: ButtonProps) => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
     setError,
     watch,
     formState: { errors },
-  } = useForm<FormClass>({ mode: "all" });
+  } = useForm<FormClass>(); //{ mode: "all" }
 
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
@@ -66,6 +67,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
   const onSubmit: SubmitHandler<FormClass> = (data) => {
     days.forEach((day) => {
       const formData = {
+        id: uuidv4(),
         classCode: data.classCode,
         instructor: data.instructor,
         startingRow: (data.starts - 6) * 6 + 2,
@@ -98,7 +100,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
           onClick={() => setOpen(true)}
           className="block px-4 py-2 text-sm"
         >
-          Add Class
+          Add New Class
         </button>
       )}
 

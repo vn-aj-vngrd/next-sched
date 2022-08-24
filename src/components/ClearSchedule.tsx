@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  resetScheduleState,
-  selectScheduleState,
-} from "../app/features/scheduleSlice";
+import { resetScheduleState } from "../app/features/scheduleSlice";
 import { ButtonProps } from "../types";
 import { toast } from "react-toastify";
+import { RootState } from "../app/store";
 
 const ClearSchedule = ({ isButton }: ButtonProps) => {
   const dispatch = useDispatch();
-  const userSchedule = useSelector(selectScheduleState);
+  const scheduleState = useSelector(
+    (state: RootState) => state.scheduleState
+  );
 
   const handleClick = () => {
-    if (userSchedule.length !== 0) {
+    if (scheduleState.length !== 0) {
       dispatch(resetScheduleState());
       localStorage.clear();
       toast.success("Schedule is cleared successfully.", {

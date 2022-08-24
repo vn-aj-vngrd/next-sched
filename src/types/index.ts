@@ -1,4 +1,5 @@
 export interface Class {
+  id: string;
   classCode: string;
   instructor: string;
   startingRow: number;
