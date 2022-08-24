@@ -4,6 +4,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   mode: "jit",
+  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
@@ -12,7 +13,13 @@ module.exports = {
       lg: "1024px",
       xl: "1280px",
     },
-    extend: {},
+    extend: {
+      colors: {
+        darkest: "#000000",
+        darker: "#212121",
+        dark: "#313131",
+      },
+    },
   },
   plugins: [],
 };

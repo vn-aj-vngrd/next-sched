@@ -3,12 +3,11 @@ import { resetScheduleState } from "../app/features/scheduleSlice";
 import { ButtonProps } from "../types";
 import { toast } from "react-toastify";
 import { RootState } from "../app/store";
+import { TrashIcon } from "@heroicons/react/solid";
 
 const ClearSchedule = ({ isButton }: ButtonProps) => {
   const dispatch = useDispatch();
-  const scheduleState = useSelector(
-    (state: RootState) => state.scheduleState
-  );
+  const scheduleState = useSelector((state: RootState) => state.scheduleState);
 
   const handleClick = () => {
     if (scheduleState.length !== 0) {
@@ -30,9 +29,9 @@ const ClearSchedule = ({ isButton }: ButtonProps) => {
         <button
           type="button"
           onClick={handleClick}
-          className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none"
+          className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:text-white"
         >
-          Clear
+          <TrashIcon className="h-5" />
         </button>
       ) : (
         <button onClick={handleClick} className="block px-4 py-2 text-sm">

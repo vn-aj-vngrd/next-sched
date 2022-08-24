@@ -10,7 +10,6 @@ const schedule = ({ scheduleState }: ResponseSchedule) => {
       {scheduleState && (
         <WeeklyTable scheduleState={JSON.parse(scheduleState.classes)} />
       )}
-      <Clipboard />
     </>
   );
 };

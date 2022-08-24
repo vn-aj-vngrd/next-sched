@@ -1,3 +1,4 @@
+import { ThemeProvider } from "next-themes";
 import type { AppType } from "next/dist/shared/lib/utils";
 import { store, persistor } from "../app/store";
 import { Provider } from "react-redux";
@@ -12,21 +13,23 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-          <ToastContainer />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <ThemeProvider attribute="class">
+            <ToastContainer
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+            <ToastContainer />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
         </PersistGate>
       </Provider>
     </>

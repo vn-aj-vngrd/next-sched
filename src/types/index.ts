@@ -33,6 +33,12 @@ export interface FormClass {
   isThemeColor?: boolean;
 }
 
+export interface FormSchedule {
+  name: string;
+  isNotify: boolean;
+  classes?: string;
+}
+
 export interface TimeSlot {
   value: number;
   description: string;

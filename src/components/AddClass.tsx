@@ -1,5 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { ClockIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
+import {
+  ClockIcon,
+  ExclamationCircleIcon,
+  PlusCircleIcon,
+} from "@heroicons/react/solid";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -31,7 +35,6 @@ const AddClass = ({ isButton }: ButtonProps) => {
   const [swatchesPickerColor, setSwatchesPickerColor] = useState<
     string | undefined
   >("");
-  const [isSchedError, setIsSchedError] = useState<boolean>(false);
 
   const [days, setDays] = useState<number[]>([]);
   const [daySlots] = useState([
@@ -60,7 +63,6 @@ const AddClass = ({ isButton }: ButtonProps) => {
     setOpen(false);
     setSwatchesPickerColor(undefined);
     setDays([]);
-    setIsSchedError(false);
     reset();
   };
 
@@ -91,9 +93,9 @@ const AddClass = ({ isButton }: ButtonProps) => {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none"
+          className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:text-white"
         >
-          Add
+          <PlusCircleIcon className="h-5" />
         </button>
       ) : (
         <button
@@ -144,12 +146,12 @@ const AddClass = ({ isButton }: ButtonProps) => {
               {/* Form */}
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+                className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-dark"
               >
                 {/* Title */}
-                <div className="flex items-center justify-center w-12 h-12 mx-auto bg-blue-100 rounded-full">
+                <div className="flex items-center justify-center w-12 h-12 mx-auto bg-gray-100 rounded-full">
                   <ClockIcon
-                    className="w-6 h-6 text-blue-600"
+                    className="w-6 h-6 text-gray-600"
                     aria-hidden="true"
                   />
                 </div>
@@ -165,7 +167,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                     <div>
                       <label
                         htmlFor="classCode"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-white"
                       >
                         Class Code / Course Name
                       </label>
@@ -202,7 +204,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                     <div className="mt-5">
                       <label
                         htmlFor="instructor"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-white"
                       >
                         Instructor / Teacher
                       </label>
@@ -240,7 +242,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                       <div className="w-full">
                         <label
                           htmlFor="starts"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm font-medium text-gray-700 dark:text-white"
                         >
                           Starts
                         </label>
@@ -283,7 +285,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                       <div className="w-full">
                         <label
                           htmlFor="ends"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm font-medium text-gray-700 dark:text-white"
                         >
                           Ends
                         </label>
@@ -329,14 +331,13 @@ const AddClass = ({ isButton }: ButtonProps) => {
                     <div className="mt-5">
                       <label
                         htmlFor="day"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-white"
                       >
                         Day of Class
                       </label>
                       <div className="flex flex-col gap-2 mt-2 md:grid-cols-4 md:grid">
                         <input
                           type="hidden"
-                          className="border-4 border-indigo-600/100"
                           {...register("isDay", {
                             required: {
                               value: true,
@@ -367,11 +368,10 @@ const AddClass = ({ isButton }: ButtonProps) => {
                                   setValue("isDay", undefined);
                                 }
                               }}
-                              className="border-4 border-indigo-600/100"
                             />
                             <label
                               htmlFor={`days.${index}.value`}
-                              className="ml-2 text-sm text-gray-700"
+                              className="ml-2 text-sm text-gray-700 dark:text-white"
                             >
                               {daySlot}
                             </label>
@@ -387,7 +387,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                     <div className="mt-5">
                       <label
                         htmlFor="classCode"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-white"
                       >
                         Theme Color
                       </label>
@@ -437,11 +437,6 @@ const AddClass = ({ isButton }: ButtonProps) => {
                     Cancel
                   </button>
 
-                  {isSchedError && (
-                    <p className="inline-flex justify-center w-full px-4 py-2 mt-3 text-sm text-red-600 sm:ml-3 sm:w-auto sm:mt-0">
-                      Sorry, schedule already exists.
-                    </p>
-                  )}
                 </div>
               </form>
             </Transition.Child>

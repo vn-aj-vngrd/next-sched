@@ -10,18 +10,18 @@ const Clipboard = () => {
   const [clipboard] = useState<string>(`${server}${router}`);
 
   return (
-    <div className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8">
+    <>
       <CopyToClipboard
         text={clipboard}
         onCopy={() =>
           toast.success("Copied to clipboard", { position: "top-right" })
         }
       >
-        <button className="p-3 font-bold text-white bg-blue-600 rounded-full hover:bg-blue-700">
-          <ClipboardIcon className="w-4 h-4 sm:h-6 sm:w-6 text-white" />
+        <button className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:text-white">
+          <ClipboardIcon className="h-5" />
         </button>
       </CopyToClipboard>
-    </div>
+    </>
   );
 };
 

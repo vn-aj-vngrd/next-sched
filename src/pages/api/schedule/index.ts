@@ -8,10 +8,14 @@ export default async function handle(
 ) {
   // POST /api/schedule
   if (req.method === "POST") {
+    console.log(req.body);
+
     const result = await prisma.schedule.create({
       data: {
-        classes: req.body,
+        classes: req.body.classes,
         code: `nextsched-${uuidv4().substring(0, 6)}`,
+        name: req.body.name,
+        isNotify: req.body.isNotify,
       },
     });
 
