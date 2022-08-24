@@ -1,15 +1,15 @@
 import { PrismaClient } from "@prisma/client";
-// import { schedJSON } from "./data";
+import { data } from "./data";
 const prisma = new PrismaClient();
 
 async function main() {
   await prisma.schedule.deleteMany();
   console.log("Deleted all records");
 
-  // await prisma.schedule.createMany({
-  //   data: schedData,
-  // });
-  // console.log("Created all records");
+  await prisma.schedule.createMany({
+    data: data,
+  });
+  console.log("Created all records");
 }
 
 main()
