@@ -10,9 +10,9 @@ const Header = () => {
   const path = useRouter().pathname;
 
   return (
-    <header className="sticky shadow-sm bg-white top-0 z-50 flex items-center justify-between flex-none px-6 py-4">
+    <>
       {path === "/" ? (
-        <>
+        <header className="sticky shadow-sm bg-white top-0 z-50 flex items-center justify-between flex-none px-6 py-4">
           <button
             type="button"
             className="text-xl font-bold text-gray-600"
@@ -28,7 +28,6 @@ const Header = () => {
             <div className="hidden md:ml-4 md:flex md:items-center">
               <Menu as="div" className="relative space-x-4">
                 <AddClass isButton={true} />
-                <ClearSchedule isButton={true} />
 
                 <Transition
                   as={Fragment}
@@ -42,8 +41,8 @@ const Header = () => {
               </Menu>
 
               <div className="w-px h-6 mx-4 bg-gray-300" />
-              {/* 
-              <div className="mx-2" /> */}
+              <ClearSchedule isButton={true} />
+              <div className="mx-2" />
               <SaveSched isButton={true} />
             </div>
             <Menu as="div" className="relative ml-6 md:hidden">
@@ -77,9 +76,9 @@ const Header = () => {
               </Transition>
             </Menu>
           </div>
-        </>
+        </header>
       ) : (
-        <>
+        <header className="relative z-20 flex items-center justify-center px-6 py-4 border-b border-gray-200">
           <button
             type="button"
             className="text-xl font-bold text-gray-600"
@@ -90,9 +89,9 @@ const Header = () => {
             Next<span className="text-blue-600">Sched</span>
             <span className="text-sm font-medium ml-1 text-red-600">Beta</span>
           </button>
-        </>
+        </header>
       )}
-    </header>
+    </>
   );
 };
 

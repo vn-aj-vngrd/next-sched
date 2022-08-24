@@ -20,9 +20,9 @@ const Layout = ({ children }: any) => {
         <Header />
         <main
           className={
-            route === "/404" || route === "/500"
-              ? "grid justify-center h-full place-items-center"
-              : "flex-grow"
+            route === "/" || route === "/schedule/[id]"
+              ? "flex-grow"
+              : "grid justify-center h-full place-items-center"
           }
         >
           {children}
