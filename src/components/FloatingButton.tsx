@@ -1,7 +1,7 @@
 import { ClipboardIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { server } from "../config";
+import { server } from "../../config";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 

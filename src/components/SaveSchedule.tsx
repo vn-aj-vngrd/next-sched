@@ -1,7 +1,7 @@
 import { ButtonProps } from "../types";
 import { useSelector } from "react-redux";
 import { selectScheduleState } from "../app/features/scheduleSlice";
-import { server } from "../config";
+import { server } from "../../config";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
