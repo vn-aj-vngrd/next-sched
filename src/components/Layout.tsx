@@ -20,7 +20,7 @@ const Layout = ({ children }: any) => {
         <Header />
         <main
           className={
-            route === "/404"
+            route === "/404" || route === "/505"
               ? "grid justify-center h-full place-items-center"
               : "flex-grow"
           }
