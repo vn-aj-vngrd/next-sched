@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { schedJSON } from "./data";
+// import { schedJSON } from "./data";
 const prisma = new PrismaClient();
 
 async function main() {
@@ -9,7 +9,7 @@ async function main() {
   // await prisma.schedule.createMany({
   //   data: schedData,
   // });
-  console.log("Created all records");
+  // console.log("Created all records");
 }
 
 main()

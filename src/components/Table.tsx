@@ -16,7 +16,7 @@ const Table = ({ scheduleState }: Schedule) => {
 
   return (
     <>
-      <div className="flex flex-col flex-auto overflow-auto bg-white border-b border-gray-200 border-t">
+      <div className="flex flex-col flex-auto overflow-auto bg-white border-b border-gray-200 ">
         <div
           style={{ width: "200%" }}
           className="flex flex-col flex-none max-w-none sm:max-w-none md:max-w-full"

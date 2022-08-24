@@ -1,8 +1,7 @@
 import AddClass from "./AddClass";
 import SaveSched from "./SaveSchedule";
-import { Fragment, useState } from "react";
-import { DotsHorizontalIcon, DotsVerticalIcon } from "@heroicons/react/solid";
-import { Menu, Transition } from "@headlessui/react";
+import { useState } from "react";
+import { DotsVerticalIcon } from "@heroicons/react/solid";
 import router, { useRouter } from "next/router";
 import ClearSchedule from "./ClearSchedule";
 
@@ -13,7 +12,7 @@ const Header = () => {
   return (
     <>
       {path === "/" ? (
-        <header className="sticky top-0 z-40 flex items-center justify-between flex-none px-6 py-4 bg-white shadow-sm">
+        <header className="sticky top-0 z-40 flex items-center justify-between flex-none px-6 py-4 bg-white shadow-sm h-14 border-b border-gray-300">
           <button
             type="button"
             className="text-xl font-bold text-gray-600"
@@ -27,19 +26,10 @@ const Header = () => {
 
           <div className="flex items-center">
             <div className="hidden md:ml-4 md:flex md:items-center">
-              <Menu as="div" className="relative space-x-4">
+              <div className="relative space-x-4">
                 <AddClass isButton={true} />
                 <ClearSchedule isButton={true} />
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                ></Transition>
-              </Menu>
+              </div>
 
               <div className="w-px h-6 mx-4 bg-gray-300" />
 
@@ -74,7 +64,7 @@ const Header = () => {
           </div>
         </header>
       ) : (
-        <header className="relative z-20 flex items-center justify-center px-6 py-4 border-b border-gray-200">
+        <header className="relative z-20 flex items-center justify-center py-4 h-14 border-b border-gray-300">
           <button
             type="button"
             className="text-xl font-bold text-gray-600"

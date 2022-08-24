@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../server/client";
+import { v4 as uuidv4 } from "uuid";
 
 export default async function handle(
   req: NextApiRequest,
@@ -10,10 +11,11 @@ export default async function handle(
     const result = await prisma.schedule.create({
       data: {
         classes: req.body,
+        code: `nextsched-${uuidv4().substring(0, 6)}`,
       },
     });
 
-    return res.json(result.id);
+    return res.json(result.code);
   }
 
   // GET /api/schedule
