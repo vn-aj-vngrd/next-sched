@@ -6,7 +6,6 @@ export default async function handle(
   res: NextApiResponse
 ) {
   // GET /api/schedule/:id
-  // 63044f4de17d31eb12ba65fa
   if (req.method === "GET") {
     const id = req.query.id;
 

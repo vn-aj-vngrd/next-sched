@@ -9,7 +9,7 @@ const Layout = ({ children }: any) => {
   return (
     <>
       <Head>
-        <title>Scheduler</title>
+        <title>NextSched</title>
         <meta
           name="description"
           content="Organize your schedule with NextSched"
