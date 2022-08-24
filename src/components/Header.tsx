@@ -28,7 +28,7 @@ const Header = () => {
             <div className="hidden md:ml-4 md:flex md:items-center">
               <Menu as="div" className="relative space-x-4">
                 <AddClass isButton={true} />
-
+                <ClearSchedule isButton={true} />
                 <Transition
                   as={Fragment}
                   enter="transition ease-out duration-100"
@@ -41,8 +41,7 @@ const Header = () => {
               </Menu>
 
               <div className="w-px h-6 mx-4 bg-gray-300" />
-              <ClearSchedule isButton={true} />
-              <div className="mx-2" />
+
               <SaveSched isButton={true} />
             </div>
             <Menu as="div" className="relative ml-6 md:hidden">
