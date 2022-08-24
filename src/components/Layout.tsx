@@ -19,9 +19,10 @@ const Layout = ({ children }: any) => {
       <div className="flex flex-col h-screen">
         <Header />
         <main
+          // flex-grow;
           className={
             route === "/" || route === "/schedule/[id]"
-              ? "flex-grow"
+              ? "flex-1 overflow-y-auto"
               : "grid justify-center h-full place-items-center"
           }
         >
