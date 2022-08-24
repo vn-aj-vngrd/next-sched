@@ -1,6 +1,6 @@
 import Error from "../components/Error";
 
-export default function Custom500(props) {
+export default function Custom500() {
   return (
     <Error
       code="500"
