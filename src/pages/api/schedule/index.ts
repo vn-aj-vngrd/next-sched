@@ -7,13 +7,13 @@ export default async function handle(
 ) {
   // POST /api/schedule
   if (req.method === "POST") {
-    const result = await prisma.schedule.create({
-      data: {
-        classes: req.body,
-      },
-    });
+    // const result = await prisma.schedule.create({
+    //   data: {
+    //     classes: req.body,
+    //   },
+    // });
 
-    return res.json(result.id);
+    return res.json({});
   }
 
   throw new Error(
