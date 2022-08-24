@@ -5,7 +5,7 @@ import { server } from "../../config";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 
-const FloatingButton = () => {
+const Clipboard = () => {
   const router = useRouter().asPath;
   const [clipboard] = useState<string>(`${server}${router}`);
 
@@ -25,4 +25,4 @@ const FloatingButton = () => {
   );
 };
 
-export default FloatingButton;
+export default Clipboard;

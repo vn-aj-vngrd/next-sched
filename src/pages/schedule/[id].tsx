@@ -2,13 +2,15 @@ import { NextApiRequest, NextApiResponse } from "next";
 import WeeklyTable from "../../components/Table";
 import { ResponseSchedule } from "../../types";
 import { server } from "../../../config";
-import FloatingButton from "../../components/FloatingButton";
+import Clipboard from "../../components/Clipboard";
 
 const schedule = ({ scheduleState }: ResponseSchedule) => {
   return (
     <>
-      {scheduleState && <WeeklyTable scheduleState={JSON.parse(scheduleState.classes)} />}
-      <FloatingButton />
+      {scheduleState && (
+        <WeeklyTable scheduleState={JSON.parse(scheduleState.classes)} />
+      )}
+      <Clipboard />
     </>
   );
 };
