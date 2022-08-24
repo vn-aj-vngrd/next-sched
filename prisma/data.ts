@@ -1,4 +1,4 @@
-export const schedData = [
+export const schedJSON = [
   {
     classes: [
       {
@@ -40,3 +40,5 @@ export const schedData = [
     ],
   },
 ];
+
+
