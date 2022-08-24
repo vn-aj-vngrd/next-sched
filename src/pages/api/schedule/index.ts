@@ -16,6 +16,13 @@ export default async function handle(
     return res.json(result.id);
   }
 
+  // GET /api/schedule
+  if (req.method === "GET") {
+    const result = await prisma.schedule.findMany({});
+
+    return res.json(result);
+  }
+
   throw new Error(
     `The HTTP ${req.method} method is not supported at this route.`
   );

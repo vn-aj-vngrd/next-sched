@@ -75,9 +75,9 @@ const AddClass = ({ isButton }: ButtonProps) => {
       };
 
       dispatch(setScheduleState(formData));
-      toast.success(`A class was added successfully.`, {
-        position: "bottom-right",
-      });
+    });
+    toast.success(`A class was added successfully.`, {
+      position: "bottom-right",
     });
 
     onReset();
