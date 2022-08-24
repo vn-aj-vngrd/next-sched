@@ -26,7 +26,7 @@ const Classes = ({ scheduleState }: Schedule) => {
           <button
             type="button"
             onClick={() => {
-              if (route !== "/") dispatch(deleteScheduleState(sched.id));
+              if (route === "/") dispatch(deleteScheduleState(sched.id));
             }}
           >
             <div
