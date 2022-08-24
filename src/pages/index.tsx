@@ -2,9 +2,13 @@ import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import WeeklyTable from "../components/Table";
-import { persistScheduleState, selectScheduleState } from "../app/features/scheduleSlice";
+import {
+  persistScheduleState,
+  selectScheduleState,
+} from "../app/features/scheduleSlice";
+import Temp from "../components/Temp";
 
-const Home: NextPage = () => {
+const Home: NextPage = (props) => {
   const userSchedule = useSelector(selectScheduleState);
 
   const dispatch = useDispatch();
@@ -34,7 +38,12 @@ const Home: NextPage = () => {
     setSchedule(userSchedule);
   }, [dispatch, userSchedule]);
 
-  return <WeeklyTable scheduleState={schedule} />;
+  return (
+    <>
+      {/* <Temp /> */}
+      <WeeklyTable scheduleState={schedule} />
+    </>
+  );
 };
 
 export default Home;

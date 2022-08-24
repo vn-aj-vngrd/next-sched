@@ -68,8 +68,8 @@ const AddClass = ({ isButton }: ButtonProps) => {
       const formData = {
         classCode: data.classCode,
         instructor: data.instructor,
-        startingRow: (data.starts - 6) * 10 + 2,
-        timeRange: (data.ends - data.starts) * 10,
+        startingRow: (data.starts - 6) * 6 + 2,
+        timeRange: (data.ends - data.starts) * 6,
         day: "col-start-" + day,
         color: swatchesPickerColor,
       };
