@@ -4,21 +4,12 @@ generator client {
 }
 
 datasource db {
-    provider             = "mongodb"
+    provider             = "cockroachdb"
     url                  = env("DATABASE_URL")
     referentialIntegrity = "prisma"
 }
 
-type Class {
-    classCode   String
-    instructor  String
-    startingRow Int
-    timeRange   Int
-    className   String
-    color       String
-}
-
 model Schedule {
-    id      String  @id @default(auto()) @map("_id") @db.ObjectId
-    classes Class[]
+    id      String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    classes String
 }

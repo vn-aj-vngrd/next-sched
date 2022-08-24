@@ -7,7 +7,7 @@ import FloatingButton from "../../components/FloatingButton";
 const schedule = ({ scheduleState }: ResponseSchedule) => {
   return (
     <>
-      {scheduleState && <WeeklyTable scheduleState={scheduleState.classes} />}
+      {scheduleState && <WeeklyTable scheduleState={JSON.parse(scheduleState.classes)} />}
       <FloatingButton />
     </>
   );

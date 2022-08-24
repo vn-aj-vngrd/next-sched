@@ -9,9 +9,9 @@ export default async function handle(
   if (req.method === "GET") {
     const id = req.query.id;
 
-    if (id?.length !== 24 || isNaN(Number("0x" + id))) {
-      res.status(400).json({ error: "Invalid id" });
-    }
+    // if (id?.length !== 24 || isNaN(Number("0x" + id))) {
+    //   res.status(400).json({ error: "Invalid id" });
+    // }
 
     const schedule = await prisma.schedule.findFirst({
       where: { id: String(id) },

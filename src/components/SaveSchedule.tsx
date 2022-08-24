@@ -11,12 +11,14 @@ const SaveSched = ({ isButton }: ButtonProps) => {
 
   const handleClick = async () => {
     if (schedule.length !== 0) {
+      const formData = JSON.stringify(schedule);
+
       const response = await fetch(`${server}/api/schedule`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(schedule),
+        body: JSON.stringify(formData),
       });
       const data = await response.json();
       window.open(`${server}/schedule/${data}`);

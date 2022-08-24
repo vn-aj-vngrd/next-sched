@@ -14,7 +14,7 @@ export interface Schedule {
 export interface ResponseSchedule {
   scheduleState: {
     id: string;
-    classes: Class[];
+    classes: string;
   };
 }
 
