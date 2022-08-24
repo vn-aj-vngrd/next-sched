@@ -70,7 +70,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
         instructor: data.instructor,
         startingRow: (data.starts - 6) * 10 + 2,
         timeRange: (data.ends - data.starts) * 10,
-        className: "relative flex mt-px col-start-" + day,
+        day: "col-start-" + day,
         color: swatchesPickerColor,
       };
 
@@ -254,9 +254,9 @@ const AddClass = ({ isButton }: ButtonProps) => {
                                 value: true,
                                 message: "Class starts is required",
                               },
-                              validate: (value) =>
-                                Number(watch("ends")) > value ||
-                                "Starts must be before ends",
+                              // validate: (value) =>
+                              //   Number(watch("ends")) > value ||
+                              //   "Starts must be before ends",
                             })}
                           >
                             {timeSlots?.map((time, index) => (

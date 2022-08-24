@@ -3,7 +3,7 @@ export interface Class {
   instructor: string;
   startingRow: number;
   timeRange: number;
-  className: string;
+  day: string;
   color: string;
 }
 

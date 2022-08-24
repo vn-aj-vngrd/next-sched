@@ -30,13 +30,13 @@ const Table = ({ scheduleState }: Schedule) => {
   }, [scheduleState]);
 
   return (
-    <div>
+    <>
       <div
         ref={container as React.RefObject<HTMLDivElement>}
         className="flex flex-col flex-auto overflow-auto bg-white"
       >
         <div
-          style={{ width: "200%", }}
+          style={{ width: "200%"}}
           className="flex flex-col flex-none max-w-none sm:max-w-none md:max-w-full"
         >
           {/* Days Row */}
@@ -108,7 +108,7 @@ const Table = ({ scheduleState }: Schedule) => {
                 {scheduleState?.map((sched, index) => (
                   <li
                     key={index}
-                    className={sched.className}
+                    className={`relative flex mt-px ${sched.day}`}
                     style={{
                       gridRow: `${sched.startingRow} / span ${sched.timeRange}`,
                     }}
@@ -147,7 +147,7 @@ const Table = ({ scheduleState }: Schedule) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
