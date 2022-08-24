@@ -91,14 +91,14 @@ const AddClass = ({ isButton }: ButtonProps) => {
           onClick={() => setOpen(true)}
           className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none"
         >
-          Add New Class
+          Add
         </button>
       ) : (
         <button
           onClick={() => setOpen(true)}
           className="block px-4 py-2 text-sm"
         >
-          Add New Class
+          Add Class
         </button>
       )}
 
