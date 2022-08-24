@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ClockIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setScheduleState } from "../app/features/scheduleSlice";
 import { SwatchesPicker } from "react-color";
 import { colors } from "../colors/colors";

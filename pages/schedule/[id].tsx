@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import WeeklyTable from "../../components/Table";
 import { ResponseSchedule } from "../../types";
-import { server } from "../../../config";
+import { server } from "../../config";
 import FloatingButton from "../../components/FloatingButton";
 
 const schedule = ({ scheduleState }: ResponseSchedule) => {
