@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import scheduleReducer from "./features/scheduleSlice";
+import titleReducer from "./features/titleSlice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
@@ -9,10 +10,11 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, scheduleReducer);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    scheduleReducer: persistReducer(persistConfig, scheduleReducer),
+    titleReducer: titleReducer,
+   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: [thunk],
 });

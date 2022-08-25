@@ -7,13 +7,13 @@ const Footer = () => {
           href="https://vanajvanguardia.me"
           target="_blank"
           rel="noopener noreferrer"
-          className="mr-2 font-bold text-medium hover:text-gray-500 dark:hover:text-gray-200"
+          className="font-medium m text-medium hover:text-blue-500"
         >
           &nbsp; Van AJ Vanguardia
         </a>
       </div>
       <div className="hidden md:block">
-        Next<b className="font-bold">Sched</b> | &copy; 2022
+        Next<b className="font-bold text-blue-500">Sched</b> | &copy; 2022
       </div>
     </footer>
   );

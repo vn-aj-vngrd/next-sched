@@ -28,7 +28,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
             />
             <Layout>
               <NextNProgress
-                color="#3a3b3c"
+                color="#3b82f6"
                 height={5}
                 options={{
                   showSpinner: false,

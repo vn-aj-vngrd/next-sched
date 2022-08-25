@@ -6,10 +6,15 @@ import router, { useRouter } from "next/router";
 import ClearSchedule from "./ClearSchedule";
 import Clipboard from "./Clipboard";
 import ToggleTheme from "./ToggleTheme";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
 
 const Header = () => {
   const path = useRouter().pathname;
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const title = useSelector(
+    (state: RootState) => state.titleReducer.titleState
+  );
 
   return (
     <header className="sticky top-0 z-40 flex items-center justify-between flex-none px-6 py-4 bg-white border-b border-gray-200 shadow-sm dark:bg-darkest dark:border-divideColor h-14">
@@ -21,14 +26,14 @@ const Header = () => {
         }}
       >
         Next
-        <b className="font-bold text-darkest dark:text-white">Sched</b>
+        <b className="font-bold text-blue-500">Sched</b>
         <span className="ml-1 text-xs font-medium text-red-500">Beta</span>
       </button>
 
       {path === "/schedule/[id]" && (
         <>
-          <div className="hidden font-medium text-dark md:flex">
-            Sample Title
+          <div className="hidden font-medium text-dark md:flex dark:text-white">
+            {title}
           </div>
         </>
       )}
@@ -57,7 +62,10 @@ const Header = () => {
       <div className="flex items-center md:hidden">
         {path === "/schedule/[id]" && (
           <>
-            <div className="font-medium text-dark">Sample Title</div>
+            <div className="font-medium text-dark dark:text-white">
+              {title.substring(0, 12)}
+              {title.length > 12 && "..."}
+            </div>
           </>
         )}
         <div className="relative ml-2 ">
@@ -65,7 +73,7 @@ const Header = () => {
             onClick={() => {
               setShowMenu(!showMenu);
             }}
-            className="relative z-10 block p-2 text-gray-500 border border-transparent focus:outline-none"
+            className="relative z-10 block p-2 text-gray-500 border border-transparent focus:outline-none dark:text-white"
           >
             <DotsVerticalIcon className="w-5 h-5" />
           </button>

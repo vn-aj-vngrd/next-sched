@@ -2,8 +2,17 @@ import { NextApiRequest, NextApiResponse } from "next";
 import WeeklyTable from "../../components/Table";
 import { ResponseSchedule } from "../../types";
 import { server } from "../../../config";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setTitleState } from "../../app/features/titleSlice";
 
-const schedule = ({ scheduleState }: ResponseSchedule) => {
+const Schedule = ({ scheduleState }: ResponseSchedule) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setTitleState(scheduleState.name));
+  }, [dispatch, scheduleState.name]);
+
   return (
     <>
       {scheduleState && (
@@ -29,12 +38,12 @@ export const getServerSideProps = async (
     };
   }
 
-  const data = await response.json();
+  const scheduleState = await response.json();
   return {
     props: {
-      scheduleState: data,
+      scheduleState,
     },
   };
 };
 
-export default schedule;
+export default Schedule;

@@ -12,9 +12,14 @@ export interface Schedule {
   scheduleState: Class[];
 }
 
+export interface Title {
+  titleState: string;
+}
+
 export interface ResponseSchedule {
   scheduleState: {
     id: string;
+    name: string;
     code: string;
     classes: string;
   };

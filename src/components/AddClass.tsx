@@ -430,9 +430,9 @@ const AddClass = ({ isButton }: ButtonProps) => {
                 <div className="p-3 mt-3 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
-                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-dark hover:bg-darker focus:outline-none sm:ml-3 sm:w-auto sm:text-sm dark:bg-white dark:text-dark dark:hover:bg-gray-100"
+                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-500 border border-transparent rounded-md shadow-sm hover:bg-blue-600 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
                   >
-                    Add
+                    Confirm
                   </button>
                   <button
                     type="button"

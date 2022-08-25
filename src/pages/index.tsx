@@ -5,7 +5,9 @@ import WeeklyTable from "../components/Table";
 import Temp from "../components/Temp";
 
 const Home: NextPage = () => {
-  const scheduleState = useSelector((state: RootState) => state.scheduleState);
+  const scheduleState = useSelector(
+    (state: RootState) => state.scheduleReducer.scheduleState
+  );
 
   return (
     <>

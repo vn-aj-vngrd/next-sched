@@ -7,7 +7,7 @@ import { TrashIcon } from "@heroicons/react/solid";
 
 const ClearSchedule = ({ isButton }: ButtonProps) => {
   const dispatch = useDispatch();
-  const scheduleState = useSelector((state: RootState) => state.scheduleState);
+  const scheduleState = useSelector((state: RootState) => state.scheduleReducer.scheduleState);
 
   const handleClick = () => {
     if (scheduleState.length !== 0) {
