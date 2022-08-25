@@ -7,91 +7,91 @@ const TimeSlot = () => {
       <div className="row-end-1 h-7"></div>
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>6</b> am
+          <b>6</b>am
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>7</b> am
+          <b>7</b>am
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>8</b> am
+          <b>8</b>am
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>9</b> am
+          <b>9</b>am
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>10</b> am
+          <b>10</b>am
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>11</b> am
+          <b>11</b>am
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>12</b> pm
+          <b>12</b>pm
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>1</b> pm
+          <b>1</b>pm
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>2</b> pm
+          <b>2</b>pm
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>3</b> pm
+          <b>3</b>pm
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>4</b> pm
+          <b>4</b>pm
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>5</b> pm
+          <b>5</b>pm
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>6</b> pm
+          <b>6</b>pm
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>7</b> pm
+          <b>7</b>pm
         </div>
       </div>
       <div />
       <div>
         <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
-          <b>8</b> pm
+          <b>8</b>pm
         </div>
       </div>
       <div />

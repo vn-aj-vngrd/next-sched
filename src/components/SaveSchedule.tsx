@@ -5,10 +5,7 @@ import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { RootState } from "../app/store";
-import {
-  BookmarkIcon,
-  ExclamationCircleIcon,
-} from "@heroicons/react/solid";
+import { BookmarkIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import { Dialog, Transition } from "@headlessui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -61,8 +58,8 @@ const SaveSched = ({ isButton }: ButtonProps) => {
         },
         body: JSON.stringify(formData),
       });
-      const data = await response.json();
-      window.open(`${server}/schedule/${data}`);
+      const code = await response.json();
+      window.open(`${server}/schedule/${code}`);
       toast.success("Your schedule has been saved.", {
         position: "bottom-right",
       });

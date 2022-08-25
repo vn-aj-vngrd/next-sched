@@ -7,10 +7,10 @@ export default async function handle(
 ) {
   // GET /api/schedule/:id
   if (req.method === "GET") {
-    const id = req.query.id;
+    const code = req.query.id;
 
     const schedule = await prisma.schedule.findFirst({
-      where: { code: String(id) },
+      where: { code: String(code) },
     });
 
     if (!schedule) {

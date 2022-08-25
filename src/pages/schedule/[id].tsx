@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import WeeklyTable from "../../components/Table";
 import { ResponseSchedule } from "../../types";
 import { server } from "../../../config";
-import Clipboard from "../../components/Clipboard";
 
 const schedule = ({ scheduleState }: ResponseSchedule) => {
   return (
@@ -18,9 +17,9 @@ export const getServerSideProps = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const id = req.query.id;
+  const code = req.query.id;
 
-  const response = await fetch(`${server}/api/schedule/${id}`, {
+  const response = await fetch(`${server}/api/schedule/${code}`, {
     method: "GET",
   });
 
