@@ -103,7 +103,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
           onClick={() => setOpen(true)}
           className="block px-4 py-2 text-sm text-dark dark:text-white"
         >
-          Add New Class
+          Add Class
         </button>
       )}
 
@@ -152,7 +152,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                 {/* Title */}
                 <div className="flex items-start justify-between p-3 border-b rounded-t dark:border-gray-600">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                    Add a New Class
+                    Add Class
                   </h3>
                   <button
                     type="button"

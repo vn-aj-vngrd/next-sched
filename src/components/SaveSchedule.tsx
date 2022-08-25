@@ -218,7 +218,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                       >
                         Notifications{" "}
                         <span className="text-red-500 ">
-                          (Unavailable at the moment)
+                          (Unavailable)
                         </span>
                       </label>
                     </label>

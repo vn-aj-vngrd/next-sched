@@ -31,7 +31,7 @@ const ToogleTheme = ({ isButton }: ButtonProps) => {
             onClick={() => setTheme("light")}
             className="block px-4 py-2 text-sm"
           >
-            Activate Light Mode
+            Light Mode
           </button>
         )}
       </>
@@ -52,7 +52,7 @@ const ToogleTheme = ({ isButton }: ButtonProps) => {
             onClick={() => setTheme("dark")}
             className="block px-4 py-2 text-sm text-dark"
           >
-            Activate Dark Mode
+            Dark Mode
           </button>
         )}
       </>
