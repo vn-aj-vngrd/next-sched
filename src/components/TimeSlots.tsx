@@ -6,92 +6,92 @@ const TimeSlot = () => {
     >
       <div className="row-end-1 h-7"></div>
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          6AM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>6</b> am
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          7AM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>7</b> am
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          8AM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>8</b> am
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          9AM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>9</b> am
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          10AM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>10</b> am
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          11AM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>11</b> am
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          12PM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>12</b> pm
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          1PM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>1</b> pm
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          2PM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>2</b> pm
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          3PM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>3</b> pm
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          4PM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>4</b> pm
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          5PM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>5</b> pm
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          6PM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>6</b> pm
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          7PM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>7</b> pm
         </div>
       </div>
       <div />
       <div>
-        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-500 z-20 dark:text-white">
-          8PM
+        <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-600 z-20 dark:text-white">
+          <b>8</b> pm
         </div>
       </div>
       <div />

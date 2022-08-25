@@ -28,7 +28,7 @@ const Table = ({ scheduleState }: Schedule) => {
               {days?.map((day, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center pt-2 pb-3 text-dark dark:text-white"
+                  className="flex flex-col items-center pt-2 pb-3 font-medium text-gray-600 dark:text-white"
                 >
                   {day.substring(0, 3)}
                 </div>
@@ -40,9 +40,10 @@ const Table = ({ scheduleState }: Schedule) => {
               {days?.map((day, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-center py-3 text-dark dark:text-white"
+                  className="flex items-center justify-center py-3 text-gray-600 dark:text-white"
                 >
-                  <span>{day}</span>
+                  <b>{day.substring(0, 3)}</b>
+                  {day.substring(3)}
                 </div>
               ))}
             </div>
