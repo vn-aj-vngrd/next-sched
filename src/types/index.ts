@@ -21,7 +21,7 @@ export interface ResponseSchedule {
 }
 
 export interface ButtonProps {
-  isButton: boolean;
+  isButton?: boolean;
 }
 
 export interface FormClass {

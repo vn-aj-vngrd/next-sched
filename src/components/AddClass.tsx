@@ -27,7 +27,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
     setError,
     watch,
     formState: { errors },
-  } = useForm<FormClass>(); //{ mode: "all" }
+  } = useForm<FormClass>(); 
 
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
@@ -93,7 +93,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:text-white"
+          className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:text-white dark:border-transparent"
         >
           <PlusCircleIcon className="h-5" />
         </button>
@@ -436,7 +436,6 @@ const AddClass = ({ isButton }: ButtonProps) => {
                   >
                     Cancel
                   </button>
-
                 </div>
               </form>
             </Transition.Child>
