@@ -90,7 +90,12 @@ const SaveSched = ({ isButton }: ButtonProps) => {
           <BookmarkIcon className="h-5" />
         </button>
       ) : (
-        <button className="block px-4 py-2 text-sm">Save Schedule</button>
+        <button
+          onClick={() => setOpen(!open)}
+          className="block px-4 py-2 text-sm"
+        >
+          Save Schedule
+        </button>
       )}
 
       <Transition.Root show={open} as={Fragment}>
@@ -100,7 +105,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
           initialFocus={cancelButtonRef}
           onClose={setOpen}
         >
-          <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex items-center justify-center min-h-screen px-4 text-center sm:block sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -136,9 +141,9 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                 className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-darker"
               >
                 {/* Title */}
-                <div className="flex items-center justify-center w-8 h-8 mx-auto rounded-full bg-dark dark:bg-light">
+                <div className="flex items-center justify-center w-10 h-10 mx-auto rounded-full bg-dark dark:bg-light">
                   <BookmarkIcon
-                    className="w-6 h-6 text-lightest dark:text-dark "
+                    className="w-6 h-6 text-lightest dark:text-dark"
                     aria-hidden="true"
                   />
                 </div>

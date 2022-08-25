@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  .chrome-picker {
+  .swatches-picker {
     background-color: #ff0000;
   }
 
@@ -12,6 +12,6 @@
   }
 }
 
-.chrome-picker {
+.swatches-picker {
   background-color: #ff0000;
 }
