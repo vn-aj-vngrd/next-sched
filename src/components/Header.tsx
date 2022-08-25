@@ -26,7 +26,7 @@ const Header = () => {
             <span className="font-bold text-darkest dark:text-white">
               Sched
             </span>
-            <span className="ml-1 text-sm font-medium text-red-600 dark:text-red-400">
+            <span className="ml-1 text-xs font-medium text-red-600 dark:text-red-400">
               Beta
             </span>
           </button>
@@ -86,7 +86,7 @@ const Header = () => {
             <span className="font-bold text-darkest dark:text-white">
               Sched
             </span>
-            <span className="ml-1 text-sm font-medium text-red-600 dark:text-red-400">
+            <span className="ml-1 text-xs font-medium text-red-600 dark:text-red-400">
               Beta
             </span>
           </button>
