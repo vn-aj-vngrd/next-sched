@@ -15,10 +15,11 @@ module.exports = {
     },
     extend: {
       colors: {
+        divideColor: "#424242",
         darkest: "#18191a",
         darker: "#242526",
         dark: "#3a3b3c",
-        lightest: "#ffffff",
+        grey: "#fafafa",
         lighter: "#f7f7f7",
         light: "#eaeaea",
       },

@@ -14,16 +14,16 @@ const Header = () => {
   return (
     <>
       {path === "/" ? (
-        <header className="sticky top-0 z-40 flex items-center justify-between flex-none px-6 py-4 bg-white border-b border-gray-200 shadow-sm dark:bg-darkest dark:border-darker h-14">
+        <header className="sticky top-0 z-40 flex items-center justify-between flex-none px-6 py-4 bg-white border-b border-gray-200 shadow-sm dark:bg-darkest dark:border-divideColor h-14">
           <button
             type="button"
-            className="text-xl font-semibold text-gray-600 dark:text-gray-200"
+            className="text-xl text-dark dark:text-light"
             onClick={() => {
               router.push("/");
             }}
           >
             Next
-            <span className="font-bold text-blue-600 dark:text-blue-400">
+            <span className="font-bold text-darkest dark:text-white">
               Sched
             </span>
             <span className="ml-1 text-sm font-medium text-red-600 dark:text-red-400">
@@ -77,13 +77,13 @@ const Header = () => {
         <header className="sticky top-0 z-40 flex items-center justify-between flex-none px-6 py-4 bg-white border-b border-gray-200 shadow-sm dark:bg-darkest dark:border-darker h-14">
           <button
             type="button"
-            className="text-xl font-semibold text-gray-600 dark:text-gray-200"
+            className="text-xl text-dark dark:text-light"
             onClick={() => {
               router.push("/");
             }}
           >
             Next
-            <span className="font-bold text-blue-600 dark:text-blue-400">
+            <span className="font-bold text-darkest dark:text-white">
               Sched
             </span>
             <span className="ml-1 text-sm font-medium text-red-600 dark:text-red-400">

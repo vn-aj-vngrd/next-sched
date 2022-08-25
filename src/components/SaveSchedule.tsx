@@ -143,7 +143,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                 {/* Title */}
                 <div className="flex items-center justify-center w-10 h-10 mx-auto rounded-full bg-dark dark:bg-light">
                   <BookmarkIcon
-                    className="w-6 h-6 text-lightest dark:text-dark"
+                    className="w-6 h-6 text-white dark:text-dark"
                     aria-hidden="true"
                   />
                 </div>
