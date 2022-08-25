@@ -20,6 +20,7 @@
     "next": "12.2.3",
     "next-redux-wrapper": "^7.0.5",
     "next-themes": "^0.2.0",
+    "nextjs-progressbar": "^0.0.14",
     "react": "18.2.0",
     "react-color": "^2.19.3",
     "react-copy-to-clipboard": "^5.1.0",

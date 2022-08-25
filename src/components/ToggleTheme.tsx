@@ -2,7 +2,6 @@ import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/solid";
 import { ButtonProps } from "../types";
-import { toast } from "react-toastify";
 
 const ToogleTheme = ({ isButton }: ButtonProps) => {
   const { systemTheme, theme, setTheme } = useTheme();

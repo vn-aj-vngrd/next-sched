@@ -3,6 +3,7 @@ import {
   ClockIcon,
   ExclamationCircleIcon,
   PlusCircleIcon,
+  XIcon,
 } from "@heroicons/react/solid";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -149,19 +150,22 @@ const AddClass = ({ isButton }: ButtonProps) => {
                 className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-darker"
               >
                 {/* Title */}
-                <div className="flex items-center justify-center w-10 h-10  mx-auto rounded-full bg-dark dark:bg-light">
-                  <ClockIcon
-                    className="w-6 h-6 text-white dark:text-dark "
-                    aria-hidden="true"
-                  />
+                <div className="flex items-start justify-between p-3 border-b rounded-t dark:border-gray-600">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    Add a New Class
+                  </h3>
+                  <button
+                    type="button"
+                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-700 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-toggle="defaultModal"
+                    onClick={onReset}
+                  >
+                    <XIcon className="w-5 h-5" />
+                    <span className="sr-only">Close modal</span>
+                  </button>
                 </div>
-                <hr className="mt-5" />
 
-                <div className="mt-3 sm:mt-5">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-center text-gray-900"
-                  ></Dialog.Title>
+                <div className="p-3 mt-3 ">
                   {/* Inputs */}
                   <div>
                     {/* Class Code */}
@@ -170,7 +174,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                         htmlFor="classCode"
                         className="block text-sm font-medium text-gray-700 dark:text-white"
                       >
-                        Class Code / Course Name
+                        Class Code
                       </label>
                       <div className="relative mt-2 rounded-md shadow-sm">
                         <input
@@ -207,7 +211,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                         htmlFor="instructor"
                         className="block text-sm font-medium text-gray-700 dark:text-white"
                       >
-                        Instructor / Teacher
+                        Instructor
                       </label>
                       <div className="relative mt-2 rounded-md shadow-sm">
                         <input
@@ -401,7 +405,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                           },
                         })}
                       />
-                      <div className="flex justify-center w-full mx-auto mt-2 text-center align-center">
+                      <div className="flex justify-center w-full p-[0.1rem] mx-auto mt-2 text-center bg-gray-100  rounded-sm align-center dark:bg-dark dark:p-[0.21rem]">
                         <SwatchesPicker
                           className="picker"
                           color={swatchesPickerColor}
@@ -412,7 +416,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                             setValue("isThemeColor", true);
                           }}
                           width={1024}
-                          height={126}
+                          height={149}
                         />
                       </div>
                       <p className="flex mt-2 text-sm text-red-600 ">
@@ -421,9 +425,9 @@ const AddClass = ({ isButton }: ButtonProps) => {
                     </div>
                   </div>
                 </div>
-                <hr className="mt-5" />
+                <hr className="mt-3 dark:border-gray-600" />
                 {/* Cancel and Add Buttons */}
-                <div className="mt-5 sm:mt-5 sm:flex sm:flex-row-reverse">
+                <div className="p-3 mt-3 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
                     className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-dark hover:bg-darker focus:outline-none sm:ml-3 sm:w-auto sm:text-sm dark:bg-white dark:text-dark"

@@ -3,12 +3,12 @@ const Spinner = () => {
     <>
       <div
         role="status"
-        className="fixed z-50 overflow-auto m-auto top-0 left-0 bottom-0 right-0 h-full w-full flex flex-col justify-center items-center"
+        className="fixed top-0 bottom-0 left-0 right-0 z-50 flex flex-col items-center justify-center w-full h-full m-auto overflow-auto"
         style={{ backgroundColor: "rgba(255,255,255,0.7)" }}
       >
         <svg
           aria-hidden="true"
-          className="mr w-8 h-8 text-gray-200 animate-spin dark:text-gray-300 fill-blue-600"
+          className="w-8 h-8 text-gray-200 mr animate-spin dark:text-gray-300 fill-dark"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@ const Spinner = () => {
           />
         </svg>
         <span className="sr-only">Loading...</span>
-        <div className="text-center mt-5 text-gray-500">
+        <div className="mt-5 text-center text-gray-500">
           Please wait a moment
         </div>
       </div>

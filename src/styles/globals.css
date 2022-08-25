@@ -3,15 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  .swatches-picker {
-    background-color: #ff0000;
-  }
-
   body {
-    @apply dark:bg-black dark:text-white bg-white text-gray-500;
+    @apply text-gray-500 bg-white dark:bg-black dark:text-white;
   }
-}
-
-.swatches-picker {
-  background-color: #ff0000;
 }

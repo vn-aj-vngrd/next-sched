@@ -3,6 +3,7 @@ import type { AppType } from "next/dist/shared/lib/utils";
 import { store, persistor } from "../app/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import NextNProgress from "nextjs-progressbar";
 import Layout from "../components/Layout";
 import "../styles/globals.css";
 import { ToastContainer } from "react-toastify";
@@ -27,6 +28,13 @@ const MyApp: AppType = ({ Component, pageProps }) => {
             />
             <ToastContainer />
             <Layout>
+              <NextNProgress
+                color="#3a3b3c"
+                height={5}
+                options={{
+                  showSpinner: false,
+                }}
+              />
               <Component {...pageProps} />
             </Layout>
           </ThemeProvider>

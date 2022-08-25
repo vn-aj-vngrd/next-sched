@@ -5,7 +5,11 @@ import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { RootState } from "../app/store";
-import { BookmarkIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
+import {
+  BookmarkIcon,
+  ExclamationCircleIcon,
+  XIcon,
+} from "@heroicons/react/solid";
 import { Dialog, Transition } from "@headlessui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -50,26 +54,26 @@ const SaveSched = ({ isButton }: ButtonProps) => {
 
       console.log(formData);
 
-      setIsLoading(true);
-      const response = await fetch(`${server}/api/schedule`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const code = await response.json();
-      window.open(`${server}/schedule/${code}`);
-      toast.success("Your schedule has been saved.", {
-        position: "bottom-right",
-      });
-      setIsLoading(false);
+      // setIsLoading(true);
+      // const response = await fetch(`${server}/api/schedule`, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(formData),
+      // });
+      // const code = await response.json();
+      // window.open(`${server}/schedule/${code}`);
+      // toast.success("Your schedule has been saved.", {
+      //   position: "bottom-right",
+      // });
+      // setIsLoading(false);
     } else {
       toast.info("Your schedule is currently empty.", {
         position: "bottom-right",
       });
     }
-    onReset();
+    // onReset();
   };
 
   if (isLoading) {
@@ -138,20 +142,22 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                 className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-darker"
               >
                 {/* Title */}
-                <div className="flex items-center justify-center w-10 h-10 mx-auto rounded-full bg-dark dark:bg-light">
-                  <BookmarkIcon
-                    className="w-6 h-6 text-white dark:text-dark"
-                    aria-hidden="true"
-                  />
+                <div className="flex items-start justify-between p-3 border-b rounded-t dark:border-gray-600">
+                  <h3 className="text-xl font-semibold text-gray-700 dark:text-white">
+                    Save Schedule
+                  </h3>
+                  <button
+                    type="button"
+                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-toggle="defaultModal"
+                    onClick={onReset}
+                  >
+                    <XIcon className="w-5 h-5" />
+                    <span className="sr-only">Close modal</span>
+                  </button>
                 </div>
 
-                <hr className="mt-5" />
-
-                <div className="mt-3 sm:mt-5">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-center text-gray-900"
-                  ></Dialog.Title>
+                <div className="p-3 mt-3">
                   {/* Inputs */}
                   <div>
                     {/* Name*/}
@@ -191,15 +197,36 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                       </p>
                     </div>
                   </div>
+                  {/* Notify */}
+                  <div className="mt-5">
+                    <label
+                      htmlFor="default-toggle"
+                      className="relative inline-flex items-center"
+                    >
+                      <input
+                        type="checkbox"
+                        id="default-toggle"
+                        {...register("isNotify")}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none  rounded-full peer dark:bg-dark peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-darker peer-checked:bg-darker"></div>
+                      <label
+                        htmlFor="notify"
+                        className="block ml-3 text-sm font-medium text-gray-700 dark:text-white"
+                      >
+                        Notifications
+                      </label>
+                    </label>
+                  </div>
                 </div>
-                <hr className="mt-5" />
+                <hr className="mt-3 dark:border-gray-600" />
                 {/* Cancel and Save Buttons */}
-                <div className="mt-5 sm:mt-5 sm:flex sm:flex-row-reverse">
+                <div className="p-3 mt-3 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
                     className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-dark hover:bg-darker focus:outline-none sm:ml-3 sm:w-auto sm:text-sm dark:bg-white dark:text-dark"
                   >
-                    Add
+                    Save
                   </button>
                   <button
                     type="button"
