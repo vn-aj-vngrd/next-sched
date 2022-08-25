@@ -29,12 +29,15 @@ const ClearSchedule = ({ isButton }: ButtonProps) => {
         <button
           type="button"
           onClick={handleClick}
-          className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:border-transparent dark:text-white"
+          className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:border-transparent dark:text-white dark:hover:text-gray-200"
         >
           <TrashIcon className="h-5" />
         </button>
       ) : (
-        <button onClick={handleClick} className="block px-4 py-2 text-sm">
+        <button
+          onClick={handleClick}
+          className="block px-4 py-2 text-sm text-dark"
+        >
           Clear Schedule
         </button>
       )}

@@ -94,14 +94,14 @@ const AddClass = ({ isButton }: ButtonProps) => {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:text-white dark:border-transparent"
+          className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:text-white dark:border-transparent dark:hover:text-gray-200"
         >
           <PlusCircleIcon className="h-5" />
         </button>
       ) : (
         <button
           onClick={() => setOpen(true)}
-          className="block px-4 py-2 text-sm"
+          className="block px-4 py-2 text-sm text-dark"
         >
           Add New Class
         </button>
@@ -430,14 +430,14 @@ const AddClass = ({ isButton }: ButtonProps) => {
                 <div className="p-3 mt-3 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
-                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-dark hover:bg-darker focus:outline-none sm:ml-3 sm:w-auto sm:text-sm dark:bg-white dark:text-dark"
+                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-dark hover:bg-darker focus:outline-none sm:ml-3 sm:w-auto sm:text-sm dark:bg-white dark:text-dark dark:hover:bg-gray-100"
                   >
                     Add
                   </button>
                   <button
                     type="button"
                     onClick={onReset}
-                    className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm dark:text-white dark:bg-dark dark:border-transparent"
+                    className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm dark:text-white dark:bg-dark dark:border-transparent dark:hover:text-light"
                   >
                     Cancel
                   </button>

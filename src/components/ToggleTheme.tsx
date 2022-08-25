@@ -50,7 +50,7 @@ const ToogleTheme = ({ isButton }: ButtonProps) => {
         ) : (
           <button
             onClick={() => setTheme("dark")}
-            className="block px-4 py-2 text-sm"
+            className="block px-4 py-2 text-sm text-dark"
           >
             Activate Dark Mode
           </button>

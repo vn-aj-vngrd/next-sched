@@ -26,7 +26,6 @@ const MyApp: AppType = ({ Component, pageProps }) => {
               draggable
               pauseOnHover
             />
-            <ToastContainer />
             <Layout>
               <NextNProgress
                 color="#3a3b3c"

@@ -24,10 +24,7 @@ const Clipboard = ({ isButton }: ButtonProps) => {
           </button>
         ) : (
           <button
-            onCopy={() =>
-              toast.success("Copied to clipboard", { position: "top-right" })
-            }
-            className="block px-4 py-2 text-sm"
+            className="block px-4 py-2 text-sm text-dark"
           >
             Copy to clipboard
           </button>
