@@ -99,8 +99,7 @@ const Header = () => {
                   <Clipboard />
                 </div>
               )}
-
-              <hr className="border-gray-200 "></hr>
+              
               <div className="px-4 transition-colors duration-200 transform hover:bg-gray-100 dark:hover:bg-darker">
                 <ToggleTheme />
               </div>

@@ -101,7 +101,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
       ) : (
         <button
           onClick={() => setOpen(true)}
-          className="block px-4 py-2 text-sm text-dark"
+          className="block px-4 py-2 text-sm text-dark dark:text-white"
         >
           Add New Class
         </button>
