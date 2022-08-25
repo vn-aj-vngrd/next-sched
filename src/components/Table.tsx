@@ -23,7 +23,7 @@ const Table = ({ scheduleState }: Schedule) => {
         >
           {/* Days Row */}
           <div className="sticky top-0 z-20 flex-none pr-8 bg-white border-b border-gray-200 shadow-sm dark:bg-darker dark:border-divideColor">
-            <div className="grid grid-cols-7 -mr-px text-sm leading-6 text-white bg-white border-r border-gray-100 divide-x divide-gray-100 sm:hidden dark:divide-divideColor">
+            <div className="grid grid-cols-7 -mr-px text-sm leading-6 text-white bg-white border-r border-gray-100 divide-x divide-gray-100 sm:hidden dark:divide-divideColor dark:border-divideColor dark:bg-darker">
               <div className="col-end-1 w-14" />
               {days?.map((day, index) => (
                 <div
