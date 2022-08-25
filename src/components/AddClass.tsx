@@ -27,7 +27,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
     setError,
     watch,
     formState: { errors },
-  } = useForm<FormClass>(); 
+  } = useForm<FormClass>();
 
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
@@ -38,13 +38,13 @@ const AddClass = ({ isButton }: ButtonProps) => {
 
   const [days, setDays] = useState<number[]>([]);
   const [daySlots] = useState([
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Sun",
   ]);
   const [timeSlots] = useState<TimeSlot[]>(generateTimeSlot());
 
@@ -146,15 +146,16 @@ const AddClass = ({ isButton }: ButtonProps) => {
               {/* Form */}
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-dark"
+                className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-darker"
               >
                 {/* Title */}
-                <div className="flex items-center justify-center w-12 h-12 mx-auto bg-gray-100 rounded-full">
-                  <ClockIcon
-                    className="w-6 h-6 text-gray-600"
+                <div className="flex items-center justify-center w-8 h-8  mx-auto rounded-full bg-dark dark:bg-light">
+                  <PlusCircleIcon
+                    className="w-6 h-6 text-lightest dark:text-dark "
                     aria-hidden="true"
                   />
                 </div>
+                <hr className="mt-5" />
 
                 <div className="mt-3 sm:mt-5">
                   <Dialog.Title
@@ -177,7 +178,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                           className={
                             errors.classCode
                               ? "w-full rounded-lg border border-red-600 px-4 py-2 focus:outline-none focus:ring-red-600 focus:border-red-600 sm:text-sm"
-                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
+                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none  sm:text-sm dark:border-transparent"
                           }
                           {...register("classCode", {
                             required: {
@@ -214,7 +215,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                           className={
                             errors.instructor
                               ? "w-full rounded-lg border border-red-600 px-4 py-2 focus:outline-none focus:ring-red-600 focus:border-red-600 sm:text-sm"
-                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
+                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none  sm:text-sm dark:border-transparent"
                           }
                           {...register("instructor", {
                             required: {
@@ -251,7 +252,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                             className={
                               errors.starts
                                 ? "w-full rounded-lg border border-red-600 px-4 py-2 focus:outline-none focus:ring-red-600 focus:border-red-600 sm:text-sm"
-                                : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
+                                : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none  sm:text-sm dark:border-transparent"
                             }
                             {...register("starts", {
                               required: {
@@ -294,7 +295,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                             className={
                               errors.ends
                                 ? "w-full rounded-lg border border-red-600 px-4 py-2 focus:outline-none focus:ring-red-600 focus:border-red-600 sm:text-sm"
-                                : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
+                                : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none  sm:text-sm dark:border-transparent"
                             }
                             {...register("ends", {
                               required: {
@@ -335,7 +336,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                       >
                         Day of Class
                       </label>
-                      <div className="flex flex-col gap-2 mt-2 md:grid-cols-4 md:grid">
+                      <div className="grid grid-cols-4 gap-2 mt-2 sm:grid-cols-7">
                         <input
                           type="hidden"
                           {...register("isDay", {
@@ -420,19 +421,19 @@ const AddClass = ({ isButton }: ButtonProps) => {
                     </div>
                   </div>
                 </div>
-
+                <hr className="mt-5" />
                 {/* Cancel and Add Buttons */}
                 <div className="mt-5 sm:mt-5 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
-                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-dark hover:bg-darker focus:outline-none sm:ml-3 sm:w-auto sm:text-sm dark:bg-white dark:text-dark"
                   >
                     Add
                   </button>
                   <button
                     type="button"
                     onClick={onReset}
-                    className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm"
+                    className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm dark:text-white dark:bg-dark dark:border-transparent"
                   >
                     Cancel
                   </button>

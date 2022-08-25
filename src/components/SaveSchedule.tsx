@@ -7,7 +7,6 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { RootState } from "../app/store";
 import {
   BookmarkIcon,
-  ClockIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/solid";
 import { Dialog, Transition } from "@headlessui/react";
@@ -73,6 +72,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
         position: "bottom-right",
       });
     }
+    onReset();
   };
 
   if (isLoading) {
@@ -133,15 +133,17 @@ const SaveSched = ({ isButton }: ButtonProps) => {
               {/* Form */}
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-dark"
+                className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-darker"
               >
                 {/* Title */}
-                <div className="flex items-center justify-center w-12 h-12 mx-auto bg-gray-100 rounded-full">
-                  <ClockIcon
-                    className="w-6 h-6 text-gray-600"
+                <div className="flex items-center justify-center w-8 h-8 mx-auto rounded-full bg-dark dark:bg-light">
+                  <BookmarkIcon
+                    className="w-6 h-6 text-lightest dark:text-dark "
                     aria-hidden="true"
                   />
                 </div>
+
+                <hr className="mt-5" />
 
                 <div className="mt-3 sm:mt-5">
                   <Dialog.Title
@@ -164,7 +166,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                           className={
                             errors.name
                               ? "w-full rounded-lg border border-red-600 px-4 py-2 focus:outline-none focus:ring-red-600 focus:border-red-600 sm:text-sm"
-                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
+                              : "w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none sm:text-sm dark:border-transparent"
                           }
                           {...register("name", {
                             required: {
@@ -188,19 +190,19 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                     </div>
                   </div>
                 </div>
-
+                <hr className="mt-5" />
                 {/* Cancel and Save Buttons */}
                 <div className="mt-5 sm:mt-5 sm:flex sm:flex-row-reverse">
                   <button
                     type="submit"
-                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                    className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-dark hover:bg-darker focus:outline-none sm:ml-3 sm:w-auto sm:text-sm dark:bg-white dark:text-dark"
                   >
-                    Save
+                    Add
                   </button>
                   <button
                     type="button"
                     onClick={onReset}
-                    className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm"
+                    className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-600 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm dark:text-white dark:bg-dark dark:border-transparent"
                   >
                     Cancel
                   </button>
