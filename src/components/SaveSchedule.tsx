@@ -52,28 +52,28 @@ const SaveSched = ({ isButton }: ButtonProps) => {
         classes,
       };
 
-      console.log(formData);
+      // console.log(formData);
 
-      // setIsLoading(true);
-      // const response = await fetch(`${server}/api/schedule`, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(formData),
-      // });
-      // const code = await response.json();
-      // window.open(`${server}/schedule/${code}`);
-      // toast.success("Your schedule has been saved.", {
-      //   position: "bottom-right",
-      // });
-      // setIsLoading(false);
+      setIsLoading(true);
+      const response = await fetch(`${server}/api/schedule`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const code = await response.json();
+      window.open(`${server}/schedule/${code}`);
+      toast.success("Your schedule has been saved.", {
+        position: "bottom-right",
+      });
+      setIsLoading(false);
     } else {
       toast.info("Your schedule is currently empty.", {
         position: "bottom-right",
       });
     }
-    // onReset();
+    onReset();
   };
 
   if (isLoading) {
@@ -209,12 +209,15 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                         {...register("isNotify")}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none  rounded-full peer dark:bg-dark peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-darker peer-checked:bg-darker"></div>
+                      <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-dark peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                       <label
                         htmlFor="notify"
                         className="block ml-3 text-sm font-medium text-gray-700 dark:text-white"
                       >
-                        Notifications
+                        Notifications{" "}
+                        <span className="text-red-500 ">
+                          (Unavailable at the moment)
+                        </span>
                       </label>
                     </label>
                   </div>
