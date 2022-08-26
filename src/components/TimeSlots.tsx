@@ -2,7 +2,7 @@ const TimeSlot = () => {
   return (
     <div
       className="grid col-start-1 col-end-2 row-start-1 divide-y divide-gray-100 dark:divide-divideColor dark:bg-darkest"
-      style={{ gridTemplateRows: "repeat(29, minmax(2rem, 1fr))" }}
+      style={{ gridTemplateRows: "repeat(29, minmax(2.5rem, 1fr))" }}
     >
       <div className="row-end-1 h-7"></div>
       <div>
