@@ -36,7 +36,7 @@ const ClearSchedule = ({ isButton }: ButtonProps) => {
       ) : (
         <button
           onClick={handleClick}
-          className="block px-4 py-2 text-sm text-dark dark:text-white"
+          className="w-full justify-start flex px-4 py-2 text-sm text-dark dark:text-white"
         >
           Clear Schedule
         </button>

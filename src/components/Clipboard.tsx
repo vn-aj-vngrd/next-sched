@@ -23,7 +23,7 @@ const Clipboard = ({ isButton }: ButtonProps) => {
             <ClipboardIcon className="h-5" />
           </button>
         ) : (
-          <button className="block px-4 py-2 text-sm text-dark dark:text-white">
+          <button className="w-full justify-start flex px-4 py-2 text-sm text-dark dark:text-white">
             Copy to clipboard
           </button>
         )}

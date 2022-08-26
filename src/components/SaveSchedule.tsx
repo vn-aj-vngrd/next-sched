@@ -95,7 +95,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
       ) : (
         <button
           onClick={() => setOpen(!open)}
-          className="block px-4 py-2 text-sm text-dark dark:text-white"
+          className="w-full justify-start flex px-4 py-2 text-sm text-dark dark:text-white"
         >
           Save Schedule
         </button>
@@ -200,7 +200,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                     </div>
                   </div>
                   {/* Notify */}
-                  <div className="mt-5">
+                  {/* <div className="mt-5">
                     <label
                       htmlFor="default-toggle"
                       className="relative inline-flex items-center"
@@ -216,13 +216,10 @@ const SaveSched = ({ isButton }: ButtonProps) => {
                         htmlFor="notify"
                         className="block ml-3 text-sm font-medium text-gray-700 dark:text-white"
                       >
-                        Notifications{" "}
-                        <span className="text-red-500 ">
-                          (Unavailable)
-                        </span>
+                        Notifications
                       </label>
                     </label>
-                  </div>
+                  </div> */}
                 </div>
                 <hr className="mt-3 dark:border-gray-600" />
                 {/* Cancel and Save Buttons */}
