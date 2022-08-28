@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import TimeSlots from "./TimeSlots";
 import { Schedule } from "../types";
 import Classes from "./Classes";
+import { useRouter } from "next/router";
 
 const Table = ({ scheduleState }: Schedule) => {
   const [days] = useState([
@@ -13,6 +14,19 @@ const Table = ({ scheduleState }: Schedule) => {
     "Saturday",
     "Sunday",
   ]);
+
+  const pathname = useRouter().pathname;
+  const [timeRange, setTimeRange] = useState<string[]>([]);
+
+  useEffect(() => {
+    let startingHour = 6;
+    const timeRangeData = Array.from({ length: 15 }, (_v, k) => {
+      const time =
+        k + startingHour < 13 ? k + startingHour : k + startingHour - 12;
+      return `${time}${k + startingHour < 12 ? "am" : "pm"}`;
+    });
+    setTimeRange(timeRangeData);
+  }, [pathname, scheduleState]);
 
   return (
     <>
@@ -42,8 +56,7 @@ const Table = ({ scheduleState }: Schedule) => {
                   key={index}
                   className="flex items-center justify-center py-3 text-gray-600 dark:text-white"
                 >
-                  <b>{day.substring(0, 3)}</b>
-                  {day.substring(3)}
+                  {day}
                 </div>
               ))}
             </div>
@@ -53,7 +66,7 @@ const Table = ({ scheduleState }: Schedule) => {
             <div className="sticky left-0 z-10 flex-none bg-white shadow-lg dark:bg-darker w-14 ring-1 ring-gray-100 dark:ring-divideColor" />
             <div className="grid flex-auto grid-cols-1 grid-rows-1">
               {/* Horizontal lines */}
-              <TimeSlots />
+              <TimeSlots repeatValue={29} timeRange={timeRange} />
 
               {/* Vertical lines */}
               <div className="grid grid-cols-7 col-start-1 col-end-2 grid-rows-1 row-start-1 divide-x divide-gray-100 dark:divide-divideColor">
@@ -68,7 +81,7 @@ const Table = ({ scheduleState }: Schedule) => {
               </div>
 
               {/* Classes */}
-              <Classes scheduleState={scheduleState} />
+              <Classes scheduleState={scheduleState} gridTemplateRows={174} />
             </div>
           </div>
         </div>

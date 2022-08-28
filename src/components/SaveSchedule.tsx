@@ -12,6 +12,7 @@ import {
 } from "@heroicons/react/solid";
 import { Dialog, Transition } from "@headlessui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import ReactTooltip from "react-tooltip";
 
 const SaveSched = ({ isButton }: ButtonProps) => {
   const scheduleState = useSelector(
@@ -28,6 +29,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
 
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
+  const [tooltip, showTooltip] = useState(true);
 
   useEffect(() => {
     reset({
@@ -38,6 +40,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
 
   const onReset = () => {
     setOpen(false);
+    showTooltip(false);
     reset();
   };
 
@@ -53,8 +56,6 @@ const SaveSched = ({ isButton }: ButtonProps) => {
         isNotify,
         classes,
       };
-
-      // console.log(formData);
 
       setIsLoading(true);
       const response = await fetch(`${server}/api/schedule`, {
@@ -84,9 +85,17 @@ const SaveSched = ({ isButton }: ButtonProps) => {
 
   return (
     <>
+      {tooltip && <ReactTooltip id="saveSched" effect="float" place="bottom" />}
+
       {isButton ? (
         <button
-          onClick={() => setOpen(!open)}
+          data-for="saveSched"
+          data-tip="Save Schedule"
+          onMouseLeave={() => {
+            showTooltip(false);
+            setTimeout(() => showTooltip(true), 50);
+          }}
+          onClick={() => setOpen(true)}
           type="button"
           className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:text-white dark:border-transparent dark:hover:text-gray-200"
         >
@@ -94,7 +103,7 @@ const SaveSched = ({ isButton }: ButtonProps) => {
         </button>
       ) : (
         <button
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen(true)}
           className="w-full justify-start flex px-4 py-2 text-sm text-dark dark:text-white"
         >
           Save Schedule
@@ -106,7 +115,10 @@ const SaveSched = ({ isButton }: ButtonProps) => {
           as="div"
           className="fixed inset-0 z-50 overflow-y-auto"
           initialFocus={cancelButtonRef}
-          onClose={setOpen}
+          onClose={() => {
+            showTooltip(false);
+            setOpen(false);
+          }}
         >
           <div className="flex items-center justify-center min-h-screen px-4 text-center sm:block sm:p-0">
             <Transition.Child

@@ -3,8 +3,8 @@ export interface Class {
   classCode: string;
   instructor: string;
   startingRow: number;
-  timeRange: number;
-  day: string;
+  endingRow: number;
+  day: number;
   color: string;
 }
 
@@ -29,6 +29,11 @@ export interface ButtonProps {
   isButton?: boolean;
 }
 
+export interface TimeSlotProps {
+  repeatValue: number;
+  timeRange: string[];
+}
+
 export interface FormClass {
   classCode: string;
   instructor: string;
@@ -47,4 +52,9 @@ export interface FormSchedule {
 export interface TimeSlot {
   value: number;
   description: string;
+}
+
+export interface ClassesProps {
+  scheduleState: Class[];
+  gridTemplateRows: number;
 }

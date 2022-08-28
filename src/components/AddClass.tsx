@@ -15,6 +15,7 @@ import { ButtonProps, FormClass, TimeSlot } from "../types";
 import { generateTimeSlot } from "../helpers";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
+import ReactTooltip from "react-tooltip";
 
 const AddClass = ({ isButton }: ButtonProps) => {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
     setOpen(false);
     setSwatchesPickerColor(undefined);
     setDays([]);
+    showTooltip(false);
     reset();
   };
 
@@ -74,8 +76,8 @@ const AddClass = ({ isButton }: ButtonProps) => {
         classCode: data.classCode,
         instructor: data.instructor,
         startingRow: (data.starts - 6) * 6 + 2,
-        timeRange: (data.ends - data.starts) * 6,
-        day: "col-start-" + day,
+        endingRow: (data.ends - 6) * 6 + 2,
+        day,
         color: swatchesPickerColor,
       };
 
@@ -88,10 +90,22 @@ const AddClass = ({ isButton }: ButtonProps) => {
     onReset();
   };
 
+  const [tooltip, showTooltip] = useState(true);
+
   return (
     <>
+      {tooltip && (
+        <ReactTooltip id="addClass" effect="float" place="bottom" eventOff="" />
+      )}
+
       {isButton ? (
         <button
+          data-tip="Add New Class"
+          onMouseLeave={() => {
+            showTooltip(false);
+            setTimeout(() => showTooltip(true), 50);
+          }}
+          data-for="addClass"
           type="button"
           onClick={() => setOpen(true)}
           className="inline-flex items-center px-1 py-1 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 shadow-sm rounded-2xl hover:text-gray-600 focus:outline-none dark:bg-dark dark:text-white dark:border-transparent dark:hover:text-gray-200"
@@ -112,7 +126,10 @@ const AddClass = ({ isButton }: ButtonProps) => {
           as="div"
           className="fixed inset-0 z-50 overflow-y-auto"
           initialFocus={cancelButtonRef}
-          onClose={setOpen}
+          onClose={() => {
+            showTooltip(false);
+            setOpen(false);
+          }}
         >
           <div className="flex items-center justify-center min-h-screen px-4 text-center sm:block sm:p-0">
             <Transition.Child

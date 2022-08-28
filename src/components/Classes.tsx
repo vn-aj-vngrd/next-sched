@@ -1,28 +1,41 @@
 import { useDispatch } from "react-redux";
 import { deleteScheduleState } from "../app/features/scheduleSlice";
-import { XIcon } from "@heroicons/react/solid";
-import { Schedule } from "../types";
+import { ClassesProps } from "../types";
 import { useRouter } from "next/router";
+import ReactTooltip from "react-tooltip";
+import { useState } from "react";
 
-const Classes = ({ scheduleState }: Schedule) => {
+const Classes = ({ scheduleState, gridTemplateRows }: ClassesProps) => {
   const dispatch = useDispatch();
   const route = useRouter().route;
+  const [tooltip, showTooltip] = useState(true);
 
   return (
     <ol
       className="grid grid-cols-7 col-start-1 col-end-2 row-start-1 pr-8"
       style={{
-        gridTemplateRows: "1.75rem repeat(174, minmax(0, 1fr))",
+        gridTemplateRows: `1.75rem repeat(${gridTemplateRows}, minmax(0, 1fr))`,
       }}
     >
       {scheduleState?.map((sched, index) => (
         <li
           key={index}
-          className={`relative flex mt-px ${sched.day}`}
+          className={`relative flex mt-px col-start-${sched.day}`}
+          data-for={`${sched.id}`}
+          data-tip="Click to Delete Schedule"
+          onMouseLeave={() => {
+            showTooltip(false);
+            setTimeout(() => showTooltip(true), 50);
+          }}
           style={{
-            gridRow: `${sched.startingRow} / span ${sched.timeRange}`,
+            gridRow: `${sched.startingRow} / span ${
+              sched.endingRow - sched.startingRow
+            }`,
           }}
         >
+          {tooltip && route === "/" && (
+            <ReactTooltip id={`${sched.id}`} effect="float" place="bottom" />
+          )}
           <button
             type="button"
             onClick={() => {
@@ -35,28 +48,12 @@ const Classes = ({ scheduleState }: Schedule) => {
                 backgroundColor: `${sched.color}`,
               }}
             >
-              <p
-                className="text-sm font-semibold text-white"
-                // style={{
-                //   color: `${contrastColor({
-                //     bgColor: sched.color,
-                //   })}`,
-                // }}
-              >
+              <p className="text-sm font-semibold text-white">
                 {sched.classCode}
               </p>
 
-              {sched.timeRange > 6 && (
-                <p
-                  className="text-xs text-white"
-                  // style={{
-                  //   color: `${contrastColor({
-                  //     bgColor: sched.color,
-                  //   })}`,
-                  // }}
-                >
-                  {sched.instructor}
-                </p>
+              {sched.endingRow - sched.startingRow > 6 && (
+                <p className="text-xs text-white">{sched.instructor}</p>
               )}
             </div>
           </button>

@@ -17,7 +17,7 @@ const Header = () => {
   );
 
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between flex-none px-6 py-4 bg-white border-b border-gray-200 shadow-sm dark:bg-darkest dark:border-divideColor h-14">
+    <header className="sticky top-0 z-50 flex items-center justify-between flex-none px-6 py-4 bg-white border-b border-gray-200 shadow-sm dark:bg-darkest dark:border-divideColor h-14">
       <button
         type="button"
         className="text-xl text-dark dark:text-light"
@@ -38,24 +38,32 @@ const Header = () => {
         </>
       )}
       <div className="flex items-center">
-        <div className="hidden md:ml-4 md:flex md:items-center">
-          <div className="relative space-x-4">
-            {path === "/" && (
-              <>
+        <div className="hidden md:flex md:items-center space-x-5">
+          {path === "/" && (
+            <>
+              <div>
                 <AddClass isButton={true} />
+              </div>
+
+              <div>
                 <ClearSchedule isButton={true} />
+              </div>
+
+              <div>
                 <SaveSched isButton={true} />
-              </>
-            )}
+              </div>
+            </>
+          )}
 
-            {path === "/schedule/[id]" && (
-              <>
+          {path === "/schedule/[id]" && (
+            <>
+              <div>
                 <Clipboard isButton={true} />
-              </>
-            )}
+              </div>
+            </>
+          )}
 
-            {<ToggleTheme isButton={true} />}
-          </div>
+          <div>{<ToggleTheme isButton={true} />}</div>
         </div>
       </div>
 
@@ -99,7 +107,7 @@ const Header = () => {
                   <Clipboard />
                 </div>
               )}
-              
+
               <div className="px-4 transition-colors duration-200 transform hover:bg-gray-100 dark:hover:bg-darker">
                 <ToggleTheme />
               </div>
