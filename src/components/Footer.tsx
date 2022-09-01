@@ -13,7 +13,8 @@ const Footer = () => {
         </a>
       </div>
       <div className="hidden md:block">
-        Next<b className="font-bold text-blue-500">Sched</b> | &copy; 2022
+        Next<b className="font-bold text-blue-500">Sched</b> | &copy;{" "}
+        {new Date().getFullYear()}
       </div>
     </footer>
   );
