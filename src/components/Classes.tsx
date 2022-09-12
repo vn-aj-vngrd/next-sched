@@ -12,7 +12,7 @@ const Classes = ({ scheduleState, gridTemplateRows }: ClassesProps) => {
 
   return (
     <ol
-      className="grid grid-cols-7 col-start-1 col-end-2 row-start-1 pr-8"
+      className="grid grid-cols-6 col-start-1 col-end-2 row-start-1 pr-8"
       style={{
         gridTemplateRows: `1.75rem repeat(${gridTemplateRows}, minmax(0, 1fr))`,
       }}

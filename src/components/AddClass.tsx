@@ -66,8 +66,8 @@ const AddClass = ({ isButton }: ButtonProps) => {
         id: uuidv4(),
         classCode: data.classCode,
         instructor: data.instructor,
-        startingRow: (data.starts - 6) * 6 + 2,
-        endingRow: (data.ends - 6) * 6 + 2,
+        startingRow: (data.starts - 7) * 6 + 2,
+        endingRow: (data.ends - 7) * 6 + 2,
         day,
         color: swatchesPickerColor,
       };
