@@ -12,15 +12,14 @@ const Table = ({ scheduleState }: Schedule) => {
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ]);
 
   const pathname = useRouter().pathname;
   const [timeRange, setTimeRange] = useState<string[]>([]);
 
   useEffect(() => {
-    let startingHour = 6;
-    const timeRangeData = Array.from({ length: 15 }, (_v, k) => {
+    let startingHour = 7;
+    const timeRangeData = Array.from({ length: 14 }, (_v, k) => {
       const time =
         k + startingHour < 13 ? k + startingHour : k + startingHour - 12;
       return `${time}${k + startingHour < 12 ? "am" : "pm"}`;
@@ -37,7 +36,7 @@ const Table = ({ scheduleState }: Schedule) => {
         >
           {/* Days Row */}
           <div className="sticky top-0 z-20 flex-none pr-8 bg-white border-b border-gray-200 shadow-sm dark:bg-darker dark:border-divideColor">
-            <div className="grid grid-cols-7 -mr-px text-sm leading-6 text-white bg-white border-r border-gray-100 divide-x divide-gray-100 sm:hidden dark:divide-divideColor dark:border-divideColor dark:bg-darker">
+            <div className="grid grid-cols-6 -mr-px text-sm leading-6 text-white bg-white border-r border-gray-100 divide-x divide-gray-100 sm:hidden dark:divide-divideColor dark:border-divideColor dark:bg-darker">
               <div className="col-end-1 w-14" />
               {days?.map((day, index) => (
                 <div
@@ -49,7 +48,7 @@ const Table = ({ scheduleState }: Schedule) => {
               ))}
             </div>
 
-            <div className="hidden grid-cols-7 -mr-px text-sm leading-6 text-white bg-white border-r border-gray-100 divide-x divide-gray-100 sm:grid dark:divide-divideColor dark:border-divideColor dark:bg-darker">
+            <div className="hidden grid-cols-6 -mr-px text-sm leading-6 text-white bg-white border-r border-gray-100 divide-x divide-gray-100 sm:grid dark:divide-divideColor dark:border-divideColor dark:bg-darker">
               <div className="col-end-1 w-14" />
               {days?.map((day, index) => (
                 <div
@@ -66,10 +65,10 @@ const Table = ({ scheduleState }: Schedule) => {
             <div className="sticky left-0 z-10 flex-none bg-white shadow-lg dark:bg-darker w-14 ring-1 ring-gray-100 dark:ring-divideColor" />
             <div className="grid flex-auto grid-cols-1 grid-rows-1">
               {/* Horizontal lines */}
-              <TimeSlots repeatValue={29} timeRange={timeRange} />
+              <TimeSlots repeatValue={27} timeRange={timeRange} />
 
               {/* Vertical lines */}
-              <div className="grid grid-cols-7 col-start-1 col-end-2 grid-rows-1 row-start-1 divide-x divide-gray-100 dark:divide-divideColor">
+              <div className="grid grid-cols-6 col-start-1 col-end-2 grid-rows-1 row-start-1 divide-x divide-gray-100 dark:divide-divideColor">
                 <div className="col-start-1 row-span-full" />
                 <div className="col-start-2 row-span-full" />
                 <div className="col-start-3 row-span-full" />
@@ -81,7 +80,7 @@ const Table = ({ scheduleState }: Schedule) => {
               </div>
 
               {/* Classes */}
-              <Classes scheduleState={scheduleState} gridTemplateRows={174} />
+              <Classes scheduleState={scheduleState} gridTemplateRows={162} />
             </div>
           </div>
         </div>

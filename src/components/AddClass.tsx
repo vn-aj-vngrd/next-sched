@@ -1,6 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
 import {
-  ClockIcon,
   ExclamationCircleIcon,
   PlusCircleIcon,
   XIcon,
@@ -39,23 +38,15 @@ const AddClass = ({ isButton }: ButtonProps) => {
   >("");
 
   const [days, setDays] = useState<number[]>([]);
-  const [daySlots] = useState([
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun",
-  ]);
+  const [daySlots] = useState(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
   const [timeSlots] = useState<TimeSlot[]>(generateTimeSlot());
 
   useEffect(() => {
     reset({
       classCode: "",
       instructor: "",
-      starts: 6,
-      ends: 6,
+      starts: 7,
+      ends: 7,
       isDay: false,
       isThemeColor: false,
     });
@@ -357,7 +348,7 @@ const AddClass = ({ isButton }: ButtonProps) => {
                       >
                         Day of Class
                       </label>
-                      <div className="grid grid-cols-4 gap-2 mt-2 sm:grid-cols-7">
+                      <div className="grid grid-cols-3 gap-2 mt-2 sm:grid-cols-6">
                         <input
                           type="hidden"
                           {...register("isDay", {
