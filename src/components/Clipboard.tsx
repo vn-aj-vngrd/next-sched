@@ -19,7 +19,7 @@ const Clipboard = ({ isButton }: ButtonProps) => {
       <CopyToClipboard
         text={clipboard}
         onCopy={() =>
-          toast.success("Copied to clipboard", { position: "top-right" })
+          toast.success("Copied to clipboard")
         }
       >
         {isButton ? (
