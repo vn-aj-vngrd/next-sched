@@ -29,7 +29,7 @@ const Table = ({ scheduleState }: Schedule) => {
 
   return (
     <>
-      <div className="flex flex-col flex-auto overflow-auto bg-white border-b border-gray-200 dark:bg-darker dark:border-divideColor">
+      <div className="flex flex-col flex-auto overflow-auto bg-white border-t border-b border-gray-200 dark:bg-darker dark:border-divideColor">
         <div
           style={{ width: "200%" }}
           className="flex flex-col flex-none max-w-none sm:max-w-none md:max-w-full"
@@ -75,8 +75,8 @@ const Table = ({ scheduleState }: Schedule) => {
                 <div className="col-start-4 row-span-full" />
                 <div className="col-start-5 row-span-full" />
                 <div className="col-start-6 row-span-full" />
-                <div className="col-start-7 row-span-full" />
-                <div className="w-8 col-start-8 row-span-full" />
+
+                <div className="w-8 col-start-7 row-span-full" />
               </div>
 
               {/* Classes */}
