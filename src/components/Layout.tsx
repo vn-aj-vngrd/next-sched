@@ -5,26 +5,15 @@ import Header from "./Header";
 import Meta from "./Meta";
 
 const Layout = ({ children }: any) => {
-  const route = useRouter().route;
-
   return (
     <>
       <Head>
         <title>NextSched</title>
         <Meta />
       </Head>
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col min-h-screen justify-between">
         <Header />
-        <main
-          // flex-grow;
-          className={
-            route === "/" || route === "/schedule/[id]"
-              ? "flex-1 overflow-y-auto"
-              : "grid justify-center h-full place-items-center"
-          }
-        >
-          {children}
-        </main>
+        <main>{children}</main>
         <Footer />
       </div>
     </>
